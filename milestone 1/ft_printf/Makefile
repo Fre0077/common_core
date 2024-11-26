@@ -6,14 +6,15 @@
 #    By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/26 08:55:19 by fde-sant          #+#    #+#              #
-#    Updated: 2024/11/26 09:56:52 by fde-sant         ###   ########.fr        #
+#    Updated: 2024/11/26 12:04:04 by fde-sant         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
+LIBFT = libft/libft.a
+LIBFTDIR = libft/
 
 CC = cc
-
 FLAGS = -Wall -Werror -Wextra -g
 
 FILE = ft_printf.c
@@ -24,20 +25,26 @@ OBJ = $(FILE:.c=.o)
 
 all:	$(NAME)
 
-$(NAME):	$(OBJ)
+$(NAME):	$(OBJ) $(LIBFT)
 	@echo "creation of $(NAME)..."
+	@ cp $(LIBFT) $(NAME)
 	@ar rcs $(NAME) $(OBJ)
+
+$(LIBFT): 
+	@$(MAKE) bonus -C $(LIBFTDIR)
 
 %.o: %.c
 	@$(CC) $(FLAGS) -c $< -o $@
 
 clean:	
 	@echo "deleating obj..."
-	@rm -f $(OBJ)
+	@rm -rf $(OBJ)
+	@$(MAKE) clean -C $(LIBFTDIR)
 
 fclean:		clean
 	@echo "deleating file.a..."
-	@rm -f $(OBJ)
+	@rm -rf $(OBJ)
+	@$(MAKE) fclean -C $(LIBFTDIR)
 
 re:		fclean all clean
 
