@@ -1,40 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_test.c                                          :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/26 09:40:34 by fde-sant          #+#    #+#             */
-/*   Updated: 2024/11/26 13:41:47 by fde-sant         ###   ########.fr       */
+/*   Created: 2024/11/18 18:23:41 by fde-sant          #+#    #+#             */
+/*   Updated: 2024/11/25 08:18:38 by fde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	test(char *input, ...)
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	va_list	arg;
-	int	i;
+	size_t			i;
+	unsigned char	*str1;
+	unsigned char	*str2;
 
-	va_start(arg, input);
+	str1 = (unsigned char *)s1;
+	str2 = (unsigned char *)s2;
 	i = -1;
-	while (input[++i])
-	{
-		if (input[i] == '%' && input[i + 1] == 's')
-		{
-			write(1, va_arg(arg, char*), 1);
-			i++;
-		}
-		else
-			write(1, &input[i], 1);
-	}
-	va_end(arg);
+	while (++i < n)
+		if (str1[i] != str2[i])
+			return (str1[i] - str2[i]);
 	return (0);
-}
-
-int main()
-{
-	int  i;
-	i = test("1: %s,\n2: %s,\n3: %s", 1, "o", "s");
 }

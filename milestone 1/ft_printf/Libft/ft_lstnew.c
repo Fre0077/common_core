@@ -1,40 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_test.c                                          :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/26 09:40:34 by fde-sant          #+#    #+#             */
-/*   Updated: 2024/11/26 13:41:47 by fde-sant         ###   ########.fr       */
+/*   Created: 2024/11/19 16:29:14 by fde-sant          #+#    #+#             */
+/*   Updated: 2024/11/20 22:18:05 by fde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	test(char *input, ...)
+t_list	*ft_lstnew(void *content)
 {
-	va_list	arg;
-	int	i;
+	t_list	*lista;
 
-	va_start(arg, input);
-	i = -1;
-	while (input[++i])
-	{
-		if (input[i] == '%' && input[i + 1] == 's')
-		{
-			write(1, va_arg(arg, char*), 1);
-			i++;
-		}
-		else
-			write(1, &input[i], 1);
-	}
-	va_end(arg);
-	return (0);
-}
-
-int main()
-{
-	int  i;
-	i = test("1: %s,\n2: %s,\n3: %s", 1, "o", "s");
+	lista = (t_list *)malloc(sizeof(t_list));
+	if (!lista)
+		return (NULL);
+	lista->content = content;
+	lista->next = NULL;
+	return (lista);
 }

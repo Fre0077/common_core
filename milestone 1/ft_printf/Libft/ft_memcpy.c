@@ -1,40 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_test.c                                          :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/26 09:40:34 by fde-sant          #+#    #+#             */
-/*   Updated: 2024/11/26 13:41:47 by fde-sant         ###   ########.fr       */
+/*   Created: 2024/11/18 15:02:13 by fde-sant          #+#    #+#             */
+/*   Updated: 2024/11/21 09:45:47 by fde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	test(char *input, ...)
+void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
-	va_list	arg;
-	int	i;
+	unsigned char	*dest;
+	unsigned char	*search;
+	size_t			i;
 
-	va_start(arg, input);
+	if (!dst && !src)
+		return (NULL);
+	dest = (unsigned char *) dst;
+	search = (unsigned char *) src;
 	i = -1;
-	while (input[++i])
-	{
-		if (input[i] == '%' && input[i + 1] == 's')
-		{
-			write(1, va_arg(arg, char*), 1);
-			i++;
-		}
-		else
-			write(1, &input[i], 1);
-	}
-	va_end(arg);
-	return (0);
+	while (++i < n)
+		dest[i] = search[i];
+	return (dst);
 }
 
-int main()
+/* int main()
 {
-	int  i;
-	i = test("1: %s,\n2: %s,\n3: %s", 1, "o", "s");
-}
+	char *cane[12];
+	char *gatto = "ciao min va!";
+	printf("%s", (char *)ft_memcpy(cane, gatto, 12));
+} */

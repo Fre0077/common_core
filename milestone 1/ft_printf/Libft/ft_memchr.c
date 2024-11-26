@@ -1,40 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_test.c                                          :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/26 09:40:34 by fde-sant          #+#    #+#             */
-/*   Updated: 2024/11/26 13:41:47 by fde-sant         ###   ########.fr       */
+/*   Created: 2024/11/18 18:17:58 by fde-sant          #+#    #+#             */
+/*   Updated: 2024/11/18 18:23:00 by fde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	test(char *input, ...)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	va_list	arg;
-	int	i;
+	size_t			i;
+	unsigned char	*str;
 
-	va_start(arg, input);
-	i = -1;
-	while (input[++i])
+	i = 0;
+	str = (unsigned char *)s;
+	while (i++ < n)
 	{
-		if (input[i] == '%' && input[i + 1] == 's')
-		{
-			write(1, va_arg(arg, char*), 1);
-			i++;
-		}
-		else
-			write(1, &input[i], 1);
+		if (*str == (unsigned char)c)
+			return (str);
+		str++;
 	}
-	va_end(arg);
-	return (0);
-}
-
-int main()
-{
-	int  i;
-	i = test("1: %s,\n2: %s,\n3: %s", 1, "o", "s");
+	return (NULL);
 }

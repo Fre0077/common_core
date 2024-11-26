@@ -1,40 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_test.c                                          :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/26 09:40:34 by fde-sant          #+#    #+#             */
-/*   Updated: 2024/11/26 13:41:47 by fde-sant         ###   ########.fr       */
+/*   Created: 2024/11/18 15:43:07 by fde-sant          #+#    #+#             */
+/*   Updated: 2024/11/21 09:45:34 by fde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	test(char *input, ...)
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	va_list	arg;
 	int	i;
 
-	va_start(arg, input);
-	i = -1;
-	while (input[++i])
-	{
-		if (input[i] == '%' && input[i + 1] == 's')
-		{
-			write(1, va_arg(arg, char*), 1);
-			i++;
-		}
-		else
-			write(1, &input[i], 1);
-	}
-	va_end(arg);
-	return (0);
+	if (!dst && !src)
+		return (NULL);
+	i = len;
+	if (dst > src)
+		while (--i >= 0)
+			((char *)dst)[i] = ((char *)src)[i];
+	else
+		ft_memcpy(dst, src, len);
+	return (dst);
 }
 
-int main()
+/* int main()
 {
-	int  i;
-	i = test("1: %s,\n2: %s,\n3: %s", 1, "o", "s");
-}
+	char wer[6] = "gatto";
+	char ter[6] = "catto";
+
+	printf("%s", (char *)ft_memmove(wer, ter, 5));
+} */

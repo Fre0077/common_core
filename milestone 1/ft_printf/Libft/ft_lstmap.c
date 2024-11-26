@@ -1,40 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_test.c                                          :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/26 09:40:34 by fde-sant          #+#    #+#             */
-/*   Updated: 2024/11/26 13:41:47 by fde-sant         ###   ########.fr       */
+/*   Created: 2024/11/19 19:02:08 by fde-sant          #+#    #+#             */
+/*   Updated: 2024/11/20 13:45:01 by fde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	test(char *input, ...)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	va_list	arg;
-	int	i;
+	t_list	*new_lst;
+	t_list	*node;
 
-	va_start(arg, input);
-	i = -1;
-	while (input[++i])
+	new_lst = NULL;
+	node = NULL;
+	while (lst)
 	{
-		if (input[i] == '%' && input[i + 1] == 's')
+		node = ft_lstnew(f(lst->content));
+		if (!node)
 		{
-			write(1, va_arg(arg, char*), 1);
-			i++;
+			ft_lstclear(&node, del);
+			return (NULL);
 		}
-		else
-			write(1, &input[i], 1);
+		ft_lstadd_back(&new_lst, node);
+		lst = lst->next;
 	}
-	va_end(arg);
-	return (0);
-}
-
-int main()
-{
-	int  i;
-	i = test("1: %s,\n2: %s,\n3: %s", 1, "o", "s");
+	return (new_lst);
 }

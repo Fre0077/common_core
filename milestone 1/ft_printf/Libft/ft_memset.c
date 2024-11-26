@@ -1,40 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_test.c                                          :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/26 09:40:34 by fde-sant          #+#    #+#             */
-/*   Updated: 2024/11/26 13:41:47 by fde-sant         ###   ########.fr       */
+/*   Created: 2024/11/18 14:25:08 by fde-sant          #+#    #+#             */
+/*   Updated: 2024/11/23 20:28:04 by fde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	test(char *input, ...)
+void	*ft_memset(void *buffer, int c, size_t count)
 {
-	va_list	arg;
-	int	i;
+	char	*str;
+	size_t	i;
 
-	va_start(arg, input);
-	i = -1;
-	while (input[++i])
-	{
-		if (input[i] == '%' && input[i + 1] == 's')
-		{
-			write(1, va_arg(arg, char*), 1);
-			i++;
-		}
-		else
-			write(1, &input[i], 1);
-	}
-	va_end(arg);
-	return (0);
-}
-
-int main()
-{
-	int  i;
-	i = test("1: %s,\n2: %s,\n3: %s", 1, "o", "s");
+	str = (char *)buffer;
+	if (!str)
+		return (NULL);
+	i = 0;
+	while (i < count)
+		str[i++] = (unsigned char)c;
+	return (buffer);
 }
