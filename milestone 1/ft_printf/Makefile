@@ -11,8 +11,10 @@ OBJ = $(FILE:.c=.o)
 all:	$(NAME)
 
 $(NAME):	$(LIBFT) $(OBJ)
-	@ cp $(LIBFT) $(NAME)
+	@cp $(LIBFT) $(NAME)
 	@ar rc $(NAME) $(OBJ)
+	@clear
+	@echo "created .a"
 
 $(LIBFT): 
 	@$(MAKE) bonus -C $(LIBFTDIR)
@@ -24,22 +26,25 @@ clean:
 	@rm -rf $(OBJ)
 	@$(MAKE) clean -C $(LIBFTDIR)
 	@clear
+	@echo "removed .o"
 
 fclean: clean
 	@rm -rf $(NAME)
 	@$(MAKE) fclean -C $(LIBFTDIR)
 	@clear
+	@echo "removed .a & .o"
 
 re:		fclean all
 
 run: re
 	@make clean
+	@clear
 	@echo "runnig program..."
-	@$(CC) $(CFLAGS) ft_printf.c libftprintf.a
-	@./a.out
+	@$(CC) $(CFLAGS) ft_printf.c libftprintf.a -o o
+	@./o
 
 val:
-	@make clean
-	@echo "runnig program with valgrind..."
-	@$(CC) $(CFLAGS) ft_printf.c libftprintf.a
-	@valgrind --leak-check=yes --track-origins=yes ./a.out
+	@clear
+	@valgrind --leak-check=yes --track-origins=yes ./o
+
+.SILENT:

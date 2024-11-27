@@ -12,14 +12,10 @@
 
 #ifndef PRINTF_H
 # define PRINTF_H
+# include "libft/libft.h"
 
 int		ft_printf(const char *n, ...);
 void	ft_putbase(unsigned long n, char *base);
 void	ft_putbase_long(unsigned long n);
-
-# include <unistd.h>
-# include <stdarg.h>
-# include "libft/libft.h"
-
 
 #endif

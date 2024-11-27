@@ -6,7 +6,7 @@
 /*   By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 17:52:19 by fde-sant          #+#    #+#             */
-/*   Updated: 2024/11/27 09:55:33 by fde-sant         ###   ########.fr       */
+/*   Updated: 2024/11/27 11:21:07 by fde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,11 @@ void	ft_putbase_long(unsigned long n)
 	char			*base;
 	int				i;
 
+	write(1, "0x", 2);
 	base = "0123456789abcdef";
 	temp = n;
 	i = 0;
-	while(temp > 0)
+	while (temp > 0)
 	{
 		temp /= 16;
 		i++;
@@ -36,4 +37,5 @@ void	ft_putbase_long(unsigned long n)
 	}
 	while (array[i])
 		write (1, &array[i++], 1);
+	free (array);
 }

@@ -6,7 +6,7 @@
 /*   By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 16:26:36 by ecarbona          #+#    #+#             */
-/*   Updated: 2024/11/27 09:57:50 by fde-sant         ###   ########.fr       */
+/*   Updated: 2024/11/27 11:09:41 by fde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	ft_putbase(unsigned long n, char *base)
 
 	temp = n;
 	i = 0;
-	while(temp > 0)
+	while (temp > 0)
 	{
 		temp /= 16;
 		i++;

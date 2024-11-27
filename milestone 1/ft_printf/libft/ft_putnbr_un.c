@@ -6,10 +6,9 @@
 /*   By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 10:08:11 by fde-sant          #+#    #+#             */
-/*   Updated: 2024/11/27 10:08:13 by fde-sant         ###   ########.fr       */
+/*   Updated: 2024/11/27 11:16:26 by fde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "libft.h"
 #include <unistd.h>
@@ -17,8 +16,9 @@
 void	ft_putnbr_un(unsigned int n)
 {
 	char	c;
+
 	if (n > 9)
 		ft_putnbr_un(n / 10);
 	c = (n % 10) + 48;
-	write (1, &c, 1);
+	write(1, &c, 1);
 }
