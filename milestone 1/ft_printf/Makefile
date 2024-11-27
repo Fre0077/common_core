@@ -38,6 +38,7 @@ re:		fclean all
 
 run: re
 	@make clean
+	@$(MAKE) fclean -C $(LIBFTDIR)
 	@clear
 	@echo "runnig program..."
 	@$(CC) $(CFLAGS) ft_printf.c libftprintf.a -o o

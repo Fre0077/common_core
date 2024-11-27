@@ -14,8 +14,8 @@
 # define PRINTF_H
 # include "libft/libft.h"
 
-int		ft_printf(const char *n, ...);
-void	ft_putbase(unsigned long n, char *base);
-void	ft_putbase_long(unsigned long n);
+int	ft_printf(const char *n, ...);
+int	ft_putbase(unsigned long n, char *base);
+int	ft_putbase_long(unsigned long n);
 
 #endif

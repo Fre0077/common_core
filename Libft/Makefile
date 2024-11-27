@@ -6,7 +6,7 @@
 #    By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/19 13:40:02 by fde-sant          #+#    #+#              #
-#    Updated: 2024/11/25 12:52:06 by fde-sant         ###   ########.fr        #
+#    Updated: 2024/11/27 15:40:33 by fde-sant         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,7 @@ $(NAME):	$(OBJ)
 
 clean:
 	@rm -rf $(OBJ) $(BONUS_OBJ)
-	@echo "file.o deleted"
+	@echo ".o deleted"
 
 fclean:		clean
 	@rm -rf $(NAME)

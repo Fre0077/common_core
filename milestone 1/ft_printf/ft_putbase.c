@@ -6,13 +6,13 @@
 /*   By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 16:26:36 by ecarbona          #+#    #+#             */
-/*   Updated: 2024/11/27 11:09:41 by fde-sant         ###   ########.fr       */
+/*   Updated: 2024/11/27 14:53:29 by fde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#include "ft_printf.h"
 
-void	ft_putbase(unsigned long n, char *base)
+int	ft_putbase(unsigned long n, char *base)
 {
 	unsigned long	temp;
 	char			*array;
@@ -34,4 +34,5 @@ void	ft_putbase(unsigned long n, char *base)
 	}
 	while (array[i])
 		write (1, &array[i++], 1);
+	return (i);
 }
