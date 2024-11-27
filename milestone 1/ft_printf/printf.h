@@ -1,19 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ecarbona <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/25 19:27:30 by fde-sant          #+#    #+#             */
-/*   Updated: 2024/11/25 19:28:51 by fde-sant         ###   ########.fr       */
+/*   Created: 2024/11/26 10:48:01 by ecarbona          #+#    #+#             */
+/*   Updated: 2024/11/26 15:21:22 by ecarbona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
-# include <stdlib.h>
-# include <stdio.h>
-# include <unistd.h>
+#ifndef PRINTF_H
+# define PRINTF_H
 
-#endif 
+int		ft_printf(const char *n, ...);
+void	ft_putbase(unsigned long n, char *base);
+void	ft_putbase_long(unsigned long n);
+
+# include <unistd.h>
+# include <stdarg.h>
+# include "libft/libft.h"
+
+
+#endif

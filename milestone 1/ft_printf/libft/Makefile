@@ -6,7 +6,7 @@
 #    By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/19 13:40:02 by fde-sant          #+#    #+#              #
-#    Updated: 2024/11/25 12:52:06 by fde-sant         ###   ########.fr        #
+#    Updated: 2024/11/27 10:09:45 by fde-sant         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ FILES =	ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c ft_isascii.c\
 		ft_putstr_fd.c ft_split.c ft_strchr.c ft_strdup.c ft_striteri.c\
 		ft_strjoin.c ft_strlcat.c ft_strlcpy.c ft_strlen.c ft_strmapi.c\
 		ft_strncmp.c ft_strnstr.c ft_strrchr.c ft_strtrim.c ft_substr.c\
-		ft_tolower.c ft_toupper.c
+		ft_tolower.c ft_toupper.c ft_putnbr_un.c
 
 BONUS_FILES =	ft_lstadd_back.c ft_lstadd_front.c ft_lstclear.c ft_lstdelone.c\
 				ft_lstiter.c ft_lstlast.c ft_lstmap.c ft_lstnew.c ft_lstsize.c
@@ -38,11 +38,11 @@ $(NAME):	$(OBJ)
 	@cc $(FLAGS) -c $< -o $@
 
 clean:
-	@rm -f $(OBJ) $(BONUS_OBJ)
+	@rm -rf $(OBJ) $(BONUS_OBJ)
 	@echo "file.o deleted"
 
 fclean:		clean
-	@rm -f $(NAME)
+	@rm -rf $(NAME)
 	@echo "$(NAME) deleted"
 
 bonus: 		$(OBJ) $(BONUS_OBJ)

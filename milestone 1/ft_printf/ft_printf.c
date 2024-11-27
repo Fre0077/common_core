@@ -5,36 +5,37 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/25 19:24:52 by fde-sant          #+#    #+#             */
-/*   Updated: 2024/11/26 13:40:02 by fde-sant         ###   ########.fr       */
+/*   Created: 2024/11/26 12:39:15 by ecarbona          #+#    #+#             */
+/*   Updated: 2024/11/27 09:56:45 by fde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "printf.h"
 
-int	ft_check_arg(char *input, va_list arg, int *i)
+static int	ft_check_arg(const char *input, va_list *arg, int *i)
 {
 	if (input[*i] != '%')
 		return (1);
 	if (input[*i + 1] == 'c')
-		ft_putchar(va_arg(arg, char));
+		return (ft_putchar_fd(va_arg(*arg, int), 1), (*i)++, 0);
 	else if (input[*i + 1] == 's')
-		ft_putstr(va_arg(arg, char*));
+		return(ft_putstr_fd(va_arg(*arg, char*), 1), (*i)++, 0);
 	else if (input[*i + 1] == 'p')
-		ft_putstr(va_arg(arg, char*));
-	else if (input[*i + 1] == 'd')
-		ft_putstr(va_arg(arg, int));
-	else if (input[*i + 1] == 'i')
-		ft_putstr(va_arg(arg, int));
+		return(write(1, "0x", 2),
+		ft_putbase_long((unsigned long)va_arg(*arg, void *)), (*i)++, 0);
+	else if (input[*i + 1] == 'd' || input[*i + 1] == 'i')
+		return(ft_putnbr_fd(va_arg(*arg, int), 1), (*i)++, 0);
 	else if (input[*i + 1] == 'u')
-		ft_putstr(va_arg(arg, unsigned int));
+		return(ft_putnbr_un(va_arg(*arg, int)), (*i)++, 0);
 	else if (input[*i + 1] == 'x')
-		ft_putstr(va_arg(arg, int));
+		return(ft_putbase(va_arg(*arg, unsigned int),
+		"0123456789abcdef"), (*i)++, 0);
 	else if (input[*i + 1] == 'X')
-		ft_putstr(va_arg(arg, int));
+		return(ft_putbase(va_arg(*arg, unsigned int),
+		"0123456789ABCDEF"), (*i)++, 0);
 	else if (input[*i + 1] == '%')
-		write(1, '%', 1);
-	return (*i++, 0);
+		write(1, "%", 1);
+	return ((*i)++ , 0);
 }
 
 int ft_printf(const char *input, ...)
@@ -43,14 +44,20 @@ int ft_printf(const char *input, ...)
 	int		i;
 
 	i = -1;
-	va_strat(arg, input);
+	va_start(arg, input);
 	while (input[++i])
-		if (ft_check_arg(input, arg, &i))
+		if (ft_check_arg(input, &arg, &i))
 			write(1, &input[i], 1);
-
+	va_end(arg);
+	return (0);
 }
 
 int main()
 {
-	
+	int x = -42;
+    int *p = &x;
+    
+	printf("%p\n", p);
+	ft_printf("%p\n", p);
+    return 0;
 }

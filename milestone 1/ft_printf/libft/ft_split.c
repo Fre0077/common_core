@@ -6,7 +6,7 @@
 /*   By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 22:03:36 by fde-sant          #+#    #+#             */
-/*   Updated: 2024/11/25 12:51:11 by fde-sant         ###   ########.fr       */
+/*   Updated: 2024/11/26 16:05:30 by fde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ static int	count_word(char const *s, char c)
 	while (s[++i])
 		if (s[i] != c && (s[i + 1] == c || s[i + 1] == '\0'))
 			count++;
-	printf("%d\n", count);
 	return (count);
 }
 

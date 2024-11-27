@@ -1,40 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_test.c                                          :+:      :+:    :+:   */
+/*   ft_putbase_long.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/26 09:40:34 by fde-sant          #+#    #+#             */
-/*   Updated: 2024/11/26 13:41:47 by fde-sant         ###   ########.fr       */
+/*   Created: 2024/11/26 17:52:19 by fde-sant          #+#    #+#             */
+/*   Updated: 2024/11/27 09:55:33 by fde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "printf.h"
 
-int	test(char *input, ...)
+void	ft_putbase_long(unsigned long n)
 {
-	va_list	arg;
-	int	i;
+	unsigned long	temp;
+	char			*array;
+	char			*base;
+	int				i;
 
-	va_start(arg, input);
-	i = -1;
-	while (input[++i])
+	base = "0123456789abcdef";
+	temp = n;
+	i = 0;
+	while(temp > 0)
 	{
-		if (input[i] == '%' && input[i + 1] == 's')
-		{
-			write(1, va_arg(arg, char*), 1);
-			i++;
-		}
-		else
-			write(1, &input[i], 1);
+		temp /= 16;
+		i++;
 	}
-	va_end(arg);
-	return (0);
-}
-
-int main()
-{
-	int  i;
-	i = test("1: %s,\n2: %s,\n3: %s", 1, "o", "s");
+	array = malloc(sizeof(char) * (i + 1));
+	array[i] = '\0';
+	while (n > 0)
+	{
+		array[--i] = base[n % 16];
+		n = n / 16;
+	}
+	while (array[i])
+		write (1, &array[i++], 1);
 }

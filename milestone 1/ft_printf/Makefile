@@ -1,71 +1,45 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/11/26 08:55:19 by fde-sant          #+#    #+#              #
-#    Updated: 2024/11/26 12:04:04 by fde-sant         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
 NAME = libftprintf.a
 LIBFT = libft/libft.a
 LIBFTDIR = libft/
-
 CC = cc
-FLAGS = -Wall -Werror -Wextra -g
+CFLAGS = -g -Wall -Wextra -Werror
 
-FILE = ft_printf.c
+FILE = ft_printf.c ft_putbase.c ft_putbase_long.c
 
 OBJ = $(FILE:.c=.o)
 
-
-
 all:	$(NAME)
 
-$(NAME):	$(OBJ) $(LIBFT)
-	@echo "creation of $(NAME)..."
+$(NAME):	$(LIBFT) $(OBJ)
 	@ cp $(LIBFT) $(NAME)
-	@ar rcs $(NAME) $(OBJ)
+	@ar rc $(NAME) $(OBJ)
 
 $(LIBFT): 
 	@$(MAKE) bonus -C $(LIBFTDIR)
 
 %.o: %.c
-	@$(CC) $(FLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 
-clean:	
-	@echo "deleating obj..."
+clean:
 	@rm -rf $(OBJ)
 	@$(MAKE) clean -C $(LIBFTDIR)
-
-fclean:		clean
-	@echo "deleating file.a..."
-	@rm -rf $(OBJ)
-	@$(MAKE) fclean -C $(LIBFTDIR)
-
-re:		fclean all clean
-
-run:	
 	@clear
+
+fclean: clean
+	@rm -rf $(NAME)
+	@$(MAKE) fclean -C $(LIBFTDIR)
+	@clear
+
+re:		fclean all
+
+run: re
+	@make clean
 	@echo "runnig program..."
-	@$(CC) $(FLAGS) ft_printf.c -o o
-	@./o
+	@$(CC) $(CFLAGS) ft_printf.c libftprintf.a
+	@./a.out
 
 val:
-	@clear
-	@echo "runnig program..."
-	@$(CC) $(FLAGS) ft_printf.c -o o
-	@valgrind --leak-check=yes --track-origins=yes ./o
-
-test:	
-	@clear
-	@echo "runnig program..."
-	@$(CC) $(FLAGS) ft_test.c -o o
-	@./o
-
-oclean: 
-	@rm -f o
-	@rm -f a.out
+	@make clean
+	@echo "runnig program with valgrind..."
+	@$(CC) $(CFLAGS) ft_printf.c libftprintf.a
+	@valgrind --leak-check=yes --track-origins=yes ./a.out

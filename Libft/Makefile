@@ -38,11 +38,11 @@ $(NAME):	$(OBJ)
 	@cc $(FLAGS) -c $< -o $@
 
 clean:
-	@rm -f $(OBJ) $(BONUS_OBJ)
+	@rm -rf $(OBJ) $(BONUS_OBJ)
 	@echo "file.o deleted"
 
 fclean:		clean
-	@rm -f $(NAME)
+	@rm -rf $(NAME)
 	@echo "$(NAME) deleted"
 
 bonus: 		$(OBJ) $(BONUS_OBJ)
