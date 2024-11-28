@@ -6,7 +6,7 @@
 /*   By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 18:57:14 by fde-sant          #+#    #+#             */
-/*   Updated: 2024/11/23 18:38:18 by fde-sant         ###   ########.fr       */
+/*   Updated: 2024/11/28 16:30:32 by fde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	*ft_calloc(size_t nmemb, size_t size)
 {
 	void	*str;
 
+	if (nmemb == 0 || size == 0)
+		return (malloc(0));
 	str = malloc(nmemb * size);
 	if (!str)
 		return (NULL);

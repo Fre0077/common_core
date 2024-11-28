@@ -6,13 +6,13 @@
 #    By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/19 13:40:02 by fde-sant          #+#    #+#              #
-#    Updated: 2024/11/27 15:40:33 by fde-sant         ###   ########.fr        #
+#    Updated: 2024/11/28 16:35:52 by fde-sant         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
 
-FLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror
 
 FILES =	ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c ft_isascii.c\
 		ft_isdigit.c ft_isprint.c ft_itoa.c ft_memchr.c ft_memcmp.c ft_memcpy.c\
@@ -35,7 +35,7 @@ $(NAME):	$(OBJ)
 	@echo "$(NAME) created"
 
 %.o: %.c
-	@cc $(FLAGS) -c $< -o $@
+	@cc $(CFLAGS) -c $< -o $@
 
 clean:
 	@rm -rf $(OBJ) $(BONUS_OBJ)
