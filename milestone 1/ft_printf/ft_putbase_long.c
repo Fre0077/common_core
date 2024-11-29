@@ -6,21 +6,21 @@
 /*   By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 17:52:19 by fde-sant          #+#    #+#             */
-/*   Updated: 2024/11/27 14:52:51 by fde-sant         ###   ########.fr       */
+/*   Updated: 2024/11/29 07:25:08 by fde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_putbase_long(unsigned long n)
+int	ft_putbase_long(unsigned long n, char *base)
 {
 	unsigned long	temp;
 	char			*array;
-	char			*base;
 	int				i;
 
+	if (!n)
+		return (write (1, "(nil)", 5), 5);
 	write(1, "0x", 2);
-	base = "0123456789abcdef";
 	temp = n;
 	i = 0;
 	while (temp > 0)

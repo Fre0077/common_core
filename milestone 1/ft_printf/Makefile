@@ -2,7 +2,7 @@ NAME = libftprintf.a
 LIBFT = libft/libft.a
 LIBFTDIR = libft/
 CC = cc
-CFLAGS = -g -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror
 
 FILE = ft_printf.c ft_putbase.c ft_putbase_long.c
 
@@ -12,12 +12,11 @@ all:	$(NAME)
 
 $(NAME):	$(LIBFT) $(OBJ)
 	@cp $(LIBFT) $(NAME)
-	@ar rc $(NAME) $(OBJ)
-	@clear
+	@ar rcs $(NAME) $(OBJ)
 	@echo "created .a"
 
 $(LIBFT): 
-	@$(MAKE) bonus -C $(LIBFTDIR)
+	@$(MAKE) -C $(LIBFTDIR)
 
 %.o: %.c
 	@$(CC) $(CFLAGS) -c $< -o $@
@@ -25,27 +24,24 @@ $(LIBFT):
 clean:
 	@rm -rf $(OBJ)
 	@$(MAKE) clean -C $(LIBFTDIR)
-	@clear
 	@echo "removed .o"
 
 fclean: clean
 	@rm -rf $(NAME)
 	@$(MAKE) fclean -C $(LIBFTDIR)
-	@clear
-	@echo "removed .a & .o"
+	@echo "removed .a"
 
 re:		fclean all
 
-run: re
-	@make clean
-	@$(MAKE) fclean -C $(LIBFTDIR)
-	@clear
-	@echo "runnig program..."
-	@$(CC) $(CFLAGS) ft_printf.c libftprintf.a -o o
-	@./o
+# run: re
+# 	@make clean
+# 	@$(MAKE) fclean -C $(LIBFTDIR)
 
-val:
-	@clear
-	@valgrind --leak-check=yes --track-origins=yes ./o
+# 	@echo "runnig program..."
+# 	@$(CC) $(CFLAGS) ft_printf.c libftprintf.a -o o
+# 	@./o
+
+# val:
+# 	@valgrind --leak-check=yes --track-origins=yes ./o
 
 .SILENT:

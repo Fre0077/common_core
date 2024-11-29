@@ -10,12 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PRINTF_H
-# define PRINTF_H
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 # include "libft/libft.h"
 
 int	ft_printf(const char *n, ...);
 int	ft_putbase(unsigned long n, char *base);
-int	ft_putbase_long(unsigned long n);
+int	ft_putbase_long(unsigned long n, char *base);
 
 #endif

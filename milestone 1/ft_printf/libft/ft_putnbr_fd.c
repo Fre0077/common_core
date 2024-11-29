@@ -6,7 +6,7 @@
 /*   By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 11:02:38 by fde-sant          #+#    #+#             */
-/*   Updated: 2024/11/27 15:17:55 by fde-sant         ###   ########.fr       */
+/*   Updated: 2024/11/29 07:40:35 by fde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ int	ft_putnbr_fd(int n, int fd)
 	if (n < 0)
 	{
 		n = -n;
-		write(fd, "-", 1);
 		len++;
+		write(fd, "-", 1);
 	}
 	while (n >= 10)
 	{
@@ -34,7 +34,7 @@ int	ft_putnbr_fd(int n, int fd)
 		n = n / 10;
 	}
 	num[i] = (n % 10) + '0';
-	len = i + 1;
+	len = len + i + 1;
 	while (i >= 0)
 		write(fd, &num[i--], 1);
 	return (len);
