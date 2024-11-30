@@ -6,7 +6,7 @@
 /*   By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 15:15:56 by fde-sant          #+#    #+#             */
-/*   Updated: 2024/11/25 16:59:38 by fde-sant         ###   ########.fr       */
+/*   Updated: 2024/11/30 15:31:03 by fde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,11 +62,15 @@ void	join_buffer(char **buffer, char *temp, char *join)
 	i = 0;
 	if (temp)
 		while (temp[i++])
-			buffer[i - 1] = temp[i - 1];
+			(*buffer)[i - 1] = temp[i - 1];
+	if (i >= 1)
+		i--;
 	k = 0;
 	if (join)
 		while (join[k++])
-			buffer[i + k - 1] = join[k - 1];
+			(*buffer)[i + k - 1] = join[k - 1];
+	if (k >= 1)
+		k--;
 	(*buffer)[i + k] = '\0';
 	free(temp);
 	free(join);
@@ -82,7 +86,8 @@ char	*return_buffer(char **buffer)
 	i = 0;
 	while ((*buffer)[i] != '\n' && (*buffer)[i])
 		i++;
-	i += 2;
+	if ((*buffer)[i++])
+		i++;
 	str = malloc(sizeof(char) * i);
 	str[i - 1] = '\0';
 	i = 0;
@@ -91,7 +96,8 @@ char	*return_buffer(char **buffer)
 		str[i] = (*buffer)[i];
 		i++;
 	}
-	str[i] = (*buffer)[i];
+	if ((*buffer)[i] == '\n')
+		str[i] = (*buffer)[i];
 	if ((*buffer)[i] == '\n')
 		str[++i] = '\0';
 	next_buffer(buffer, i);
