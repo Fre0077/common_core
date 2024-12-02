@@ -6,7 +6,7 @@
 /*   By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 16:56:28 by fde-sant          #+#    #+#             */
-/*   Updated: 2024/11/30 15:32:40 by fde-sant         ###   ########.fr       */
+/*   Updated: 2024/12/02 16:30:38 by fde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ char	*get_next_line_one(int fd, char **buffer)
 		return (return_buffer(buffer));
 	join = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	read_return = read(fd, join, BUFFER_SIZE);
-	join[read_return] = '\0';
+	if (read_return > -1)
+		join[read_return] = '\0';
 	if (read_return > 0)
 	{
 		temp = temp_copy(buffer);
@@ -50,7 +51,7 @@ char	*get_next_line_one(int fd, char **buffer)
 		if (check_buffer(buffer, read_return) == 1)
 			return (get_next_line_one(fd, buffer));
 	}
-	if (read_return == 0)
+	if (read_return <= 0)
 		free (join);
 	return (return_buffer(buffer));
 }
