@@ -6,7 +6,7 @@
 /*   By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 16:26:36 by ecarbona          #+#    #+#             */
-/*   Updated: 2024/11/29 07:50:05 by fde-sant         ###   ########.fr       */
+/*   Updated: 2024/12/03 13:56:47 by fde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,5 @@ int	ft_putbase(unsigned long n, char *base)
 	}
 	while (array[i])
 		write (1, &array[i++], 1);
-	return (i);
+	return (free (array), i);
 }

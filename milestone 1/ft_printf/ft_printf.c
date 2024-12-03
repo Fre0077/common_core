@@ -6,7 +6,7 @@
 /*   By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 12:39:15 by ecarbona          #+#    #+#             */
-/*   Updated: 2024/12/03 08:44:05 by fde-sant         ###   ########.fr       */
+/*   Updated: 2024/12/03 14:00:16 by fde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,3 +60,9 @@ int	ft_printf(const char *input, ...)
 	va_end(arg);
 	return (len);
 }
+
+// int main()
+// {
+// 	int i = ft_printf("%x", 11);
+// 	ft_printf("\n%d\n", i);
+// }
