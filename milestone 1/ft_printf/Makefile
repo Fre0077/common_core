@@ -36,12 +36,12 @@ re:		fclean all
 # run: re
 # 	@make clean
 # 	@$(MAKE) fclean -C $(LIBFTDIR)
-
 # 	@echo "runnig program..."
 # 	@$(CC) $(CFLAGS) ft_printf.c libftprintf.a -o o
+# 	@clear
 # 	@./o
 
 # val:
 # 	@valgrind --leak-check=yes --track-origins=yes ./o
 
-.SILENT:
+# .SILENT:

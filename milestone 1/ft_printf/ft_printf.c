@@ -6,7 +6,7 @@
 /*   By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 12:39:15 by ecarbona          #+#    #+#             */
-/*   Updated: 2024/11/29 08:13:50 by fde-sant         ###   ########.fr       */
+/*   Updated: 2024/12/03 08:44:05 by fde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ static int	ft_check_arg(const char *input, va_list *arg, int *i, int *len)
 {
 	if (input[*i] != '%')
 		return (0);
+	if (input[*i + 1] == '\0')
+		return (1);
 	if (input[*i + 1] == 'c')
 		*len += ft_putchar_fd(va_arg(*arg, int), 1);
 	else if (input[*i + 1] == 's')
