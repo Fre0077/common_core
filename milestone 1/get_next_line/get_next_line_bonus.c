@@ -6,7 +6,7 @@
 /*   By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 16:56:28 by fde-sant          #+#    #+#             */
-/*   Updated: 2024/12/02 16:30:38 by fde-sant         ###   ########.fr       */
+/*   Updated: 2024/12/04 11:15:13 by fde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ char	*get_next_line(int fd)
 	return (get_next_line_one(fd, &buffer[fd]));
 }
 
-/* int main()
+int main()
 {
 	int fd = open("papere", O_RDONLY);
 	int fd1 = open("papere_blu", O_RDONLY);
@@ -90,4 +90,4 @@ char	*get_next_line(int fd)
 	free(str);
 	close(fd);
 	return (0);
-} */
+}

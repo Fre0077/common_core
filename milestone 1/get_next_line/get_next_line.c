@@ -6,7 +6,7 @@
 /*   By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 18:08:34 by fde-sant          #+#    #+#             */
-/*   Updated: 2024/12/02 16:29:43 by fde-sant         ###   ########.fr       */
+/*   Updated: 2024/12/04 11:14:18 by fde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,25 +57,23 @@ char	*get_next_line(int fd)
 	return (return_buffer(&buffer));
 }
 
-/* int main(int ac, char **av)
+int main()
 {
-	if (ac < 2)
-		return (123);
-	int fd = open(av[1], O_RDONLY);
-	int fd1 = -1;
+	// int fd = open(av[1], O_RDONLY);
+	// int fd1 = -1;
 	char	*str;
 	int		i = 0;
 
-	fd1++;
-	if (fd == -1)
-		return (1);
-	str = get_next_line(fd);
+	// printf("\n\n----%d\n\n", fd);
+	// fd1++;
+	// if (fd == -1)
+	// 	return (1);
+	str = get_next_line(0);
 	while (str != NULL)
 	{
 		printf("TEST %d:\n%s", i++, str);
 		free(str);
-		str = get_next_line(fd);
+		str = get_next_line(0);
 	}
-	close(fd);
 	return (0);
-} */
+}
