@@ -6,7 +6,7 @@
 /*   By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 12:39:15 by ecarbona          #+#    #+#             */
-/*   Updated: 2024/12/05 08:15:40 by fde-sant         ###   ########.fr       */
+/*   Updated: 2024/12/10 07:45:37 by fde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@ static int	ft_check_arg(const char *input, va_list *arg, int *i, int *len)
 	if (input[*i + 1] == '\0')
 		return (1);
 	if (input[*i + 1] == 'c')
-		*len += ft_putchar_fd(va_arg(*arg, int), 1);
+		*len += ft_putchar(va_arg(*arg, int), 1);
 	else if (input[*i + 1] == 's')
-		*len += ft_putstr_fd(va_arg(*arg, char *), 1);
+		*len += ft_putstr(va_arg(*arg, char *), 1);
 	else if (input[*i + 1] == 'p')
 		*len += ft_putbase_long((unsigned long)va_arg(*arg, void *),
 				"0123456789abcdef");
 	else if (input[*i + 1] == 'd' || input[*i + 1] == 'i')
-		*len += ft_putnbr_fd(va_arg(*arg, int), 1);
+		*len += ft_putnbr(va_arg(*arg, int), 1);
 	else if (input[*i + 1] == 'u')
 		*len += ft_putnbr_un(va_arg(*arg, int));
 	else if (input[*i + 1] == 'x')
@@ -34,7 +34,7 @@ static int	ft_check_arg(const char *input, va_list *arg, int *i, int *len)
 	else if (input[*i + 1] == 'X')
 		*len += ft_putbase(va_arg(*arg, unsigned int), "0123456789ABCDEF");
 	else if (input[*i + 1] == '%')
-		*len += ft_putchar_fd('%', 1);
+		*len += ft_putchar('%', 1);
 	return ((*i)++, 1);
 }
 

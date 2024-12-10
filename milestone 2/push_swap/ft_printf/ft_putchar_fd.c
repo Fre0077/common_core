@@ -6,13 +6,13 @@
 /*   By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 10:39:02 by fde-sant          #+#    #+#             */
-/*   Updated: 2024/12/09 13:30:15 by fde-sant         ###   ########.fr       */
+/*   Updated: 2024/12/10 07:42:57 by fde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_putchar_fd(char c, int fd)
+int	ft_putchar(char c, int fd)
 {
 	write (fd, &c, 1);
 	return (1);

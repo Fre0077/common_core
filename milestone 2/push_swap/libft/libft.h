@@ -6,7 +6,7 @@
 /*   By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 12:57:20 by fde-sant          #+#    #+#             */
-/*   Updated: 2024/12/09 19:16:49 by fde-sant         ###   ########.fr       */
+/*   Updated: 2024/12/10 20:27:44 by fde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <unistd.h>
+# include "../index.h"
 
 int				ft_isalpha(int a);
 int				ft_toupper(int a);
@@ -23,10 +24,10 @@ int				ft_tolower(int a);
 int				ft_isalnum(int a);
 int				ft_isascii(int a);
 int				ft_isprint(int a);
-int				ft_atoi(const char *str);
-int				ft_strcmp(char *a, char *b);
 int				ft_strncmp(char *s1, char *s2, unsigned int n);
 int				ft_memcmp(const void *s1, const void *s2, size_t n);
+
+long			ft_atoi(const char *str);
 
 void			*ft_memset(void *buffer, int c, size_t count);
 void			*ft_bzero(void *buffer, size_t count);

@@ -6,38 +6,30 @@
 #    By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/06 16:44:57 by fde-sant          #+#    #+#              #
-#    Updated: 2024/12/09 16:58:43 by fde-sant         ###   ########.fr        #
+#    Updated: 2024/12/10 16:23:03 by fde-sant         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-
-
-
 NAME = index.a
+LIBFTDIR = libft/
 FT_PRINTFDIR = ft_printf/
 FT_PRINTF = ft_printf/ft_printf.a
-LIBFTDIR = libft/
-LIBFT = libft/libft.a
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -g
 
-FILE =	parsing.c list.c p.c s.c r.c rr.c
+FILE =	parsing.c input.c list.c list2.c p.c s.c r.c rr.c
 
 OBJ = $(FILE:.c=.o)
 
 all:		$(NAME) $(FT_PRINTF) $(LIBFT)
 
 $(NAME):	$(OBJ) $(FT_PRINTF) $(LIBFT)
-	@cp	$(FT_PRINTF) $(NAME)
-	@cp	$(LIBFT) $(NAME)
+	@cp $(FT_PRINTF) $(NAME)
 	@ar rcs $(NAME) $(OBJ)
 	@echo "created .a"
 
 $(FT_PRINTF):
 	@$(MAKE) -C $(FT_PRINTFDIR)	
-
-$(LIBFT):
-	@$(MAKE) -C $(LIBFTDIR)	
 
 %.o: %.c
 	@$(CC) $(CFLAGS) -c $< -o $@
@@ -54,8 +46,12 @@ fclean:		clean
 	@$(MAKE) fclean -C $(LIBFTDIR)
 	@echo "removed .a"
 
-re:			fclean all clean
+re:			fclean all
 
 .SILENT:
 
-#run:
+run:
+	@make re
+	@make clean
+	@clear
+	@cc $(CFLAGS) push_swap.c index.a -o a

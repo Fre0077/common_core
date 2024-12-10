@@ -6,7 +6,7 @@
 #    By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/19 13:40:02 by fde-sant          #+#    #+#              #
-#    Updated: 2024/12/09 17:01:56 by fde-sant         ###   ########.fr        #
+#    Updated: 2024/12/10 09:48:23 by fde-sant         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,18 +28,15 @@ all:		$(NAME)
 
 $(NAME):	$(OBJ)
 	@ar rcs $(NAME) $(OBJ)
-	@echo "$(NAME) created"
 
 %.o: %.c
 	@cc $(CFLAGS) -c $< -o $@
 
 clean:
 	@rm -rf $(OBJ) $(BONUS_OBJ)
-	@echo ".o deleted"
 
 fclean:		clean
 	@rm -rf $(NAME)
-	@echo "$(NAME) deleted"
 
 re:			fclean all
 

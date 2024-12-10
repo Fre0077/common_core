@@ -6,13 +6,13 @@
 /*   By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 11:02:38 by fde-sant          #+#    #+#             */
-/*   Updated: 2024/12/09 13:30:32 by fde-sant         ###   ########.fr       */
+/*   Updated: 2024/12/10 07:43:37 by fde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_putnbr_fd(int n, int fd)
+int	ft_putnbr(int n, int fd)
 {
 	int		i;
 	int		len;
