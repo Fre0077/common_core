@@ -6,7 +6,7 @@
 /*   By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 22:03:36 by fde-sant          #+#    #+#             */
-/*   Updated: 2024/12/10 18:02:13 by fde-sant         ###   ########.fr       */
+/*   Updated: 2024/12/11 20:42:35 by fde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,18 +90,3 @@ char	**ft_split(char const *s, char c)
 	}
 	return (dest);
 }
-
-/* int main()
-{
-	char	**array;
-	int		i;
-
-	i = -1;
-	array = ft_split("87876  ttret et tes", ' ');
-	while (array[++i] != NULL)
-		printf("%s\n", array[i]);
-	i = -1;
-	while (array[++i])
-		free(array[i]);
-	free(array);
-} */

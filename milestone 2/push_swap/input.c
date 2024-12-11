@@ -6,11 +6,21 @@
 /*   By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 13:39:14 by fde-sant          #+#    #+#             */
-/*   Updated: 2024/12/10 21:02:13 by fde-sant         ###   ########.fr       */
+/*   Updated: 2024/12/11 21:51:16 by fde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "index.h"
+
+static void	free_array(char **array)
+{
+	int	i;
+
+	i = -1;
+	while (array[++i + 1] != NULL)
+		free (array[i]);
+	free (array);
+}
 
 static void	set_node(t_input **input, char *str)
 {
@@ -24,7 +34,7 @@ static void	set_node(t_input **input, char *str)
 		(*input)->next = ft_lstnew_input(array[i]);
 		(*input) = (*input)->next;
 	}
-	free (array);
+	free_array(array);
 }
 
 static int	check_empty(char **av)
@@ -47,7 +57,6 @@ t_input	*create_stack(char **av, int ac)
 
 	if (check_empty(av))
 		return (write(2, "Error\n", 6), NULL);
-	array = NULL;
 	array = ft_split(av[1], ' ');
 	i = 0;
 	input = ft_lstnew_input(array[i]);
@@ -57,7 +66,7 @@ t_input	*create_stack(char **av, int ac)
 		input->next = ft_lstnew_input(array[i]);
 		input = input->next;
 	}
-	free (array);
+	free_array(array);
 	i = 1;
 	while (++i < ac)
 		set_node(&input, av[i]);

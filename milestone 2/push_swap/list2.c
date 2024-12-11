@@ -6,7 +6,7 @@
 /*   By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/09 19:16:03 by fde-sant          #+#    #+#             */
-/*   Updated: 2024/12/10 21:04:06 by fde-sant         ###   ########.fr       */
+/*   Updated: 2024/12/11 22:35:18 by fde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ t_stack	*ft_lstnew_stack(long val)
 
 	new_node = malloc(sizeof(t_stack));
 	new_node->val = val;
-	new_node->next = NULL;
+	new_node->next = new_node;
+	new_node->previus = new_node;
 	return (new_node);
 }
 
@@ -49,6 +50,7 @@ void	lst_clear_stack(t_stack *input)
 {
 	t_stack	*temp;
 
+	(input->previus)->next = NULL;
 	while (input != NULL)
 	{
 		temp = input->next;
@@ -57,14 +59,14 @@ void	lst_clear_stack(t_stack *input)
 	}
 }
 
-void	ft_lstdel(t_stack *a)
+void	ft_addnew_stack(long val, t_stack *next, t_stack *previus)
 {
-	t_stack	*temp;
+	t_stack	*new_node;
 
-	while (a != NULL)
-	{
-		temp = a->next;
-		free (a);
-		a = temp;
-	}
+	new_node = malloc(sizeof(t_stack));
+	new_node->val = val;
+	new_node->next = next;
+	new_node->previus = previus;
+	next->previus = new_node;
+	previus->next = new_node;
 }

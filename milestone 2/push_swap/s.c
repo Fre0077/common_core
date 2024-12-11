@@ -6,41 +6,43 @@
 /*   By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 16:28:47 by fde-sant          #+#    #+#             */
-/*   Updated: 2024/12/09 19:44:02 by fde-sant         ###   ########.fr       */
+/*   Updated: 2024/12/11 15:37:06 by fde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "index.h"
 
-void	sa(t_stack *a)
+void	sa(t_stack **a)
 {
-	int	temp;
+	long	temp;
 
-	if (a == NULL || a->next == NULL)
+	if ((*a) == NULL || (*a)->next == NULL)
 	{
-		ft_printf("stack a non ha abbastanza elementi\n");
+		ft_printf("sa fail\n");
 		return ;
 	}
-	temp = (a->next)->val;
-	(a->next)->val = a->val;
-	a->val = temp;
+	temp = ((*a)->next)->val;
+	((*a)->next)->val = (*a)->val;
+	(*a)->val = temp;
+	ft_printf("sa\n");
 }
 
-void	sb(t_stack *b)
+void	sb(t_stack **b)
 {
-	int	temp;
+	long	temp;
 
-	if (b == NULL || b->next == NULL)
+	if ((*b) == NULL || (*b)->next == NULL)
 	{
-		ft_printf("stack b non ha abbastanza elementi\n");
+		ft_printf("sb fail\n");
 		return ;
 	}
-	temp = (b->next)->val;
-	(b->next)->val = b->val;
-	b->val = temp;
+	temp = ((*b)->next)->val;
+	((*b)->next)->val = (*b)->val;
+	(*b)->val = temp;
+	ft_printf("sb\n");
 }
 
-void	ss(t_stack *a, t_stack *b)
+void	ss(t_stack **a, t_stack **b)
 {
 	sa(a);
 	sb(b);

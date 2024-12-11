@@ -6,7 +6,7 @@
 /*   By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 16:28:36 by fde-sant          #+#    #+#             */
-/*   Updated: 2024/12/10 21:04:18 by fde-sant         ###   ########.fr       */
+/*   Updated: 2024/12/11 22:07:34 by fde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,13 @@
 
 int	ft_lstsize(t_stack *a)
 {
+	t_stack *first;
 	int	i;
 
-	i = 0;
-	while (a != NULL)
+	i = 1;
+	first = a;
+	a = a->next;
+	while (a != first)
 	{
 		i++;
 		a = a->next;
@@ -27,7 +30,7 @@ int	ft_lstsize(t_stack *a)
 
 t_stack	*ft_lstlast(t_stack *lst)
 {
-	while (lst->next == NULL)
+	while ((lst->next)->next != NULL)
 		lst = lst->next;
 	return (lst);
 }
@@ -47,14 +50,14 @@ int	ft_lstcmp(t_input *a, t_input *b)
 	return (0);
 }
 
-void	ft_lstadd_front(t_stack *lst, t_stack *new)
+void	ft_lstdel(t_stack *a)
 {
-	new->next = lst;
-	lst = new;
-}
+	t_stack	*temp;
 
-void	ft_lstadd_back(t_stack *lst, t_stack *new)
-{
-	(ft_lstlast(lst))->next = new;
+	while (a != NULL)
+	{
+		temp = a->next;
+		free (a);
+		a = temp;
+	}
 }
-

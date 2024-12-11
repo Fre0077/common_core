@@ -6,45 +6,45 @@
 /*   By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 16:28:45 by fde-sant          #+#    #+#             */
-/*   Updated: 2024/12/09 14:51:30 by fde-sant         ###   ########.fr       */
+/*   Updated: 2024/12/11 16:01:56 by fde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "index.h"
 
-void	rra(t_stack *a)
+void	rra(t_stack **a)
 {
 	t_stack	*temp;
 
-	if (a == NULL || a->next == NULL)
+	if ((*a) == NULL || (*a)->next == NULL)
 	{
-		ft_printf("lo stack a è lungo 1 o è vuoto\n");
+		ft_printf("rra fail\n");
 		return ;
 	}
-	temp = ft_lstlast(a);
-	temp->next = a;
-	temp = a->next;
-	a->next = NULL;
-	a = temp;
+	temp = ft_lstlast(*a);
+	(temp->next)->next = (*a);
+	(*a) = temp->next;
+	temp->next = NULL;
+	ft_printf("rra\n");
 }
 
-void	rrb(t_stack *b)
+void	rrb(t_stack **b)
 {
 	t_stack	*temp;
 
-	if (b == NULL || b->next == NULL)
+	if ((*b) == NULL || (*b)->next == NULL)
 	{
-		ft_printf("lo stack b è lungo 1 o è vuoto\n");
+		ft_printf("rrb fail\n");
 		return ;
 	}
-	temp = ft_lstlast(b);
-	temp->next = b;
-	temp = b->next;
-	b->next = NULL;
-	b = temp;
+	temp = ft_lstlast(*b);
+	(temp->next)->next = (*b);
+	(*b) = temp->next;
+	temp->next = NULL;
+	ft_printf("rrb\n");
 }
 
-void	rrr(t_stack *a, t_stack *b)
+void	rrr(t_stack **a, t_stack **b)
 {
 	rra(a);
 	rrb(b);
