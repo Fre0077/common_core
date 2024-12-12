@@ -6,7 +6,7 @@
 #    By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/06 16:44:57 by fde-sant          #+#    #+#              #
-#    Updated: 2024/12/11 20:36:04 by fde-sant         ###   ########.fr        #
+#    Updated: 2024/12/12 16:12:53 by fde-sant         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ CFLAGS = -Wall -Wextra -Werror -g
 FILE =	parsing.c input.c\
 		list.c list2.c\
 		p.c s.c r.c rr.c\
-		# algorithm.c algorithm_case.c case_of_3.c
+		# algorithm.c s_manager.c switch.c push_b.c move.c
 
 OBJ = $(FILE:.c=.o)
 
