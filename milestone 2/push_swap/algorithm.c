@@ -12,13 +12,15 @@
 
 #include "index.h"
 
+//array [low_a 0, high_a 1, low_b 2, high_b 3, max_value 4, push_need 5 , direct 6]
+
 void	algorithm(t_stack **a)
 {
 	t_stack	*b;
 	int		s[7];
 
 	b = NULL;
-	if (set_s(s, *a, b))
+	if (set_s(s, *a))
 		return ;
 	while ((s[0] - s[3]) != 1 && ((s[0] - s[3]) != 1 || s[4] != s[1]))
 	{
