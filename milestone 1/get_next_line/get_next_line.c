@@ -59,7 +59,7 @@ char	*get_next_line(int fd)
 
 int main()
 {
-	// int fd = open(av[1], O_RDONLY);
+	int fd = open("papere", O_RDONLY);
 	// int fd1 = -1;
 	char	*str;
 	int		i = 0;
@@ -68,12 +68,13 @@ int main()
 	// fd1++;
 	// if (fd == -1)
 	// 	return (1);
-	str = get_next_line(0);
+	str = get_next_line(fd);
 	while (str != NULL)
 	{
 		printf("TEST %d:\n%s", i++, str);
 		free(str);
-		str = get_next_line(0);
+		str = get_next_line(fd);
 	}
+	free(str);
 	return (0);
 }
