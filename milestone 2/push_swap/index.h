@@ -6,7 +6,7 @@
 /*   By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 16:34:07 by fde-sant          #+#    #+#             */
-/*   Updated: 2024/12/11 21:49:35 by fde-sant         ###   ########.fr       */
+/*   Updated: 2025/01/04 19:40:47 by fde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,12 @@ t_stack	*ft_lstnew_stack(long val);
 t_input	*create_stack(char **av, int ac);
 t_stack	*ft_lstlast(t_stack *lst);
 void	ft_lstdel(t_stack *a);
+void	ft_restore(t_stack * a, int way);
 int		ft_lstsize(t_stack *a);
 int		ft_lstcmp(t_input *a, t_input *b);
 
-void	pa(t_stack **a, t_stack **b);
-void	pb(t_stack **a, t_stack **b);
+int		pa(t_stack **a, t_stack **b);
+int		pb(t_stack **a, t_stack **b);
 
 void	sa(t_stack **a);
 void	sb(t_stack **b);
@@ -60,5 +61,8 @@ void	rrr(t_stack **a, t_stack **b);
 t_stack	*parsing(t_input *input);
 
 void	algorithm(t_stack **a);
+int		set_s(int s[7], t_stack *a);
+void	move(t_stack **a, t_stack **b, int s[7]);
+void	upgrade_s(t_stack *a, int s[7]);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 13:38:33 by fde-sant          #+#    #+#             */
-/*   Updated: 2024/12/12 16:01:30 by fde-sant         ###   ########.fr       */
+/*   Updated: 2025/01/03 18:18:32 by fde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	main(int ac, char **av)
 	// Vecchio ho fatto il possibile oggi, buona fortuna per domani...
 	//lascia fare il resto a me, apparte il fatot che fallirò miseramente, ce la farò!
 
-
+	algorithm(&a);
 	
 	lst_clear_stack(a);
 	return (0);

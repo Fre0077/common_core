@@ -5,14 +5,33 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/12 16:03:35 by fde-sant          #+#    #+#             */
-/*   Updated: 2024/12/12 16:08:26 by fde-sant         ###   ########.fr       */
+/*   Created: 2025/01/04 19:40:20 by fde-sant          #+#    #+#             */
+/*   Updated: 2025/01/04 19:40:37 by fde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "index.h"
 
-int	move(t_stack **a, t_stack **b,int **s)
+void	move(t_stack **a, t_stack **b, int s[7])
 {
-	
+	if (((*a)->next)->val == s[0] || ((*a)->previus)->val == s[1])
+	{
+		if (s[6] == 0)
+			s[6] = 1;
+		else 
+			s[6] = 0;
+	}
+	if (s[6] == 0)
+	{
+		if (s[5] == 1)
+		{
+			s[5] = 0;
+			s[3] = ((*b)->previus)->val;
+			rr(a, b);
+		}
+		else
+			ra(a);
+	}
+	else
+		rra(a);
 }
