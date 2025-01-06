@@ -6,7 +6,7 @@
 /*   By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 16:28:41 by fde-sant          #+#    #+#             */
-/*   Updated: 2025/01/04 12:39:07 by fde-sant         ###   ########.fr       */
+/*   Updated: 2025/01/05 14:35:47 by fde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,13 @@ int	pa(t_stack **a, t_stack **b)
 		(*a) = temp;
 		return (ft_printf("pa\n"), 0);
 	}
+	temp = (*b)->next;
 	((*b)->next)->previus = (*b)->previus;
 	((*b)->previus)->next = (*b)->next;
 	(*b)->next = (*a);
 	(*b)->previus = (*a)->previus;
 	((*a)->previus)->next = (*b);
 	(*a)->previus = (*b);
-	temp = (*a);
 	(*a) = (*b);
 	(*b) = temp;
 	return (ft_printf("pa\n"), 0);

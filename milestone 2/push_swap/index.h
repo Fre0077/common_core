@@ -6,7 +6,7 @@
 /*   By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 16:34:07 by fde-sant          #+#    #+#             */
-/*   Updated: 2025/01/04 19:40:47 by fde-sant         ###   ########.fr       */
+/*   Updated: 2025/01/05 16:22:27 by fde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,10 @@ t_stack	*parsing(t_input *input);
 
 void	algorithm(t_stack **a);
 int		set_s(int s[7], t_stack *a);
+void	way_out(t_stack **a, int s[7]);
+int		switch_a(t_stack **a, int s[7]);
 void	move(t_stack **a, t_stack **b, int s[7]);
 void	upgrade_s(t_stack *a, int s[7]);
+void	complete(t_stack **a, t_stack **b);
 
 #endif

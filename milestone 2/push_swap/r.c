@@ -6,7 +6,7 @@
 /*   By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 16:28:43 by fde-sant          #+#    #+#             */
-/*   Updated: 2025/01/04 18:58:16 by fde-sant         ###   ########.fr       */
+/*   Updated: 2025/01/05 14:13:29 by fde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,17 @@ void	rb(t_stack **b)
 
 void	rr(t_stack **a, t_stack **b)
 {
-	ra(a);
-	rb(b);
+	if ((*a) == NULL || (*a)->next == NULL)
+	{
+		ft_printf("rr fail\n");
+		return ;
+	}
+	(*a) = (*a)->next;
+	if ((*b) == NULL || (*b)->next == NULL)
+	{
+		ft_printf("rr fail\n");
+		return ;
+	}
+	(*b) = (*b)->next;
+	ft_printf("rr\n");
 }
