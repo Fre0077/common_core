@@ -6,7 +6,7 @@
 #    By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/06 15:50:41 by fde-sant          #+#    #+#              #
-#    Updated: 2025/01/08 10:09:51 by fde-sant         ###   ########.fr        #
+#    Updated: 2025/01/08 16:23:49 by fde-sant         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ LIBFT = ft_printf/libft/libft.a
 CC = cc
 CFLAGS = -g -Werror -Wall -Wextra
 
-FILE =	test.c create_texture.c set_texture.c reading_map.c checking_map.c\
+FILE =	so_long.c create_texture.c put_texture.c reading_map.c checking_map.c\
 		move.c
 
 OBJ = $(FILE:.c=.o)
@@ -56,4 +56,4 @@ run:
 	@rm -rf $(FT_PRINTF)
 	@rm -rf $(LIBFT)
 	@clear
-	@cc test.c so_long.a -g -Lmlx -lmlx -lXext -lX11 -lm -Lmlx -lmlx -lXext -lX11 -lm -o "a"
+	@cc so_long.c so_long.a -g -Lmlx -lmlx -lXext -lX11 -lm -Lmlx -lmlx -lXext -lX11 -lm -o "a"

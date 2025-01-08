@@ -6,7 +6,7 @@
 /*   By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 15:34:12 by fde-sant          #+#    #+#             */
-/*   Updated: 2025/01/08 11:20:44 by fde-sant         ###   ########.fr       */
+/*   Updated: 2025/01/08 16:26:06 by fde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,11 @@ void	set_image(t_texture *base)
 	base->portal = create_image("textures/portal.xpm", base);
 }
 
-void	*tale(t_texture base, char c)
+void	delete_image(t_texture *base)
 {
-	if (c == '0')
-		return (base.water);
-	else if (c == '1')
-		return (base.lily);
-	else if (c == 'P')
-		return (base.frog);
-	else if (c == 'C')
-		return (base.fly);
-	return (base.portal);
+	mlx_destroy_image(base->mlx, base->water);
+	mlx_destroy_image(base->mlx, base->lily);
+	mlx_destroy_image(base->mlx, base->frog);
+	mlx_destroy_image(base->mlx, base->fly);
+	mlx_destroy_image(base->mlx, base->portal);
 }

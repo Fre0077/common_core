@@ -6,7 +6,7 @@
 /*   By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 16:56:56 by fde-sant          #+#    #+#             */
-/*   Updated: 2025/01/08 11:32:31 by fde-sant         ###   ########.fr       */
+/*   Updated: 2025/01/08 16:47:12 by fde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int	copy_in_matrix(char **matrix, char *map_file, int size, int raw)
 		while (++x != size)
 		{
 			if (ft_findc("10PEC", add[x]) == 0)
-				return (ft_printf("Error\ninvalid char\n"), free(matrix), 0);
+				return (ft_printf("Error\ninvalid char\n"), 0);
 			matrix[y][x] = add[x];
 		}
 		read(fd, add, size + 1);
@@ -118,6 +118,6 @@ char	**create_matrix(char *map_file, t_map *map)
 	matrix[raw] = NULL;
 	if (copy_in_matrix(matrix, map_file, size, raw) == 0
 		|| check(matrix, map) == 0)
-		return (NULL);
+		return (ft_freematrix(matrix, map->height), NULL);
 	return (matrix);
 }

@@ -6,7 +6,7 @@
 /*   By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 12:57:20 by fde-sant          #+#    #+#             */
-/*   Updated: 2025/01/08 11:05:51 by fde-sant         ###   ########.fr       */
+/*   Updated: 2025/01/08 16:52:43 by fde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int		ft_putchar_fd(char c, int fd);
 int		ft_putstr_fd(char *s, int fd);
 int		ft_putnbr_fd(int n, int fd);
 int		ft_putnbr_un(unsigned int n);
+int		ft_countc_matrix(char **matrix, char c, int height);
 
 char	*ft_calloc(int len);
 

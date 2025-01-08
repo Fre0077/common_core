@@ -6,7 +6,7 @@
 /*   By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 14:34:17 by fde-sant          #+#    #+#             */
-/*   Updated: 2025/01/08 11:15:22 by fde-sant         ###   ########.fr       */
+/*   Updated: 2025/01/08 16:58:33 by fde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,12 @@ typedef struct s_texture
 
 typedef struct s_map
 {
-	char	**matrix;
-	int		height;
-	int		witdh;
-	int		py;
-	int		px;
+	char		**matrix;
+	int			height;
+	int			witdh;
+	int			py;
+	int			px;
+	t_texture	base;
 }	t_map;
 
 void	ft_print_matrix(char **matrix);
@@ -46,8 +47,10 @@ int		check_cpe(char **matrix, t_map *map);
 int		check_wall(char **matrix, t_map *map);
 int		check_path(char **matrix, t_map *map);
 void	set_image(t_texture *base);
+void	delete_image(t_texture *base);
 void	*tale(t_texture base, char c);
 void	set_map(t_texture base, t_map map);
 void	move(t_map *map, int new_py, int new_px);
+int		close_window(t_map *map);
 
 #endif
