@@ -6,7 +6,7 @@
 /*   By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 15:34:12 by fde-sant          #+#    #+#             */
-/*   Updated: 2025/01/08 16:26:06 by fde-sant         ###   ########.fr       */
+/*   Updated: 2025/01/09 14:13:05 by fde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ void	*create_image(char *name, t_texture *base)
 
 void	set_image(t_texture *base)
 {
-	base->water = create_image("textures/water.xpm", base);
-	base->lily = create_image("textures/lily.xpm", base);
-	base->frog = create_image("textures/frog.xpm", base);
-	base->fly = create_image("textures/fly.xpm", base);
-	base->portal = create_image("textures/portal.xpm", base);
+	base->water = create_image("textures/WATER.xpm", base);
+	base->lily = create_image("textures/FLOWER_LILY.xpm", base);
+	base->frog = create_image("textures/FROG.xpm", base);
+	base->fly = create_image("textures/FLY.xpm", base);
+	base->portal = create_image("textures/CLOSE_PORTAL.xpm", base);
 }
 
 void	delete_image(t_texture *base)
