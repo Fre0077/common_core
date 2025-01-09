@@ -1,22 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_matrix.c                                  :+:      :+:    :+:   */
+/*   ft_add.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/08 09:06:06 by fde-sant          #+#    #+#             */
-/*   Updated: 2025/01/09 09:05:14 by fde-sant         ###   ########.fr       */
+/*   Created: 2025/01/09 08:18:21 by fde-sant          #+#    #+#             */
+/*   Updated: 2025/01/09 10:46:23 by fde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_print_matrix(char **matrix)
+char	*ft_add(char *str, char *add)
 {
-	int	y;
+	int		i;
+	int		j;
+	char	*ret;
 
-	y = -1;
-	while (matrix[++y] != NULL)
-		ft_printf("%s\n", matrix[y]);
+	j = -1;
+	ret = ft_calloc(ft_strlen(str) + ft_strlen(add) + 1);
+	i = -1;
+	if (str != NULL)
+		while (str[++i])
+			ret[++j] = str[i];
+	i = -1;
+	if (add != NULL)
+		while (add[++i])
+			ret[++j] = add[i];
+	return (ret);
 }

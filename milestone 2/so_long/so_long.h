@@ -6,7 +6,7 @@
 /*   By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 14:34:17 by fde-sant          #+#    #+#             */
-/*   Updated: 2025/01/08 16:58:33 by fde-sant         ###   ########.fr       */
+/*   Updated: 2025/01/09 09:38:13 by fde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,10 @@ typedef struct s_map
 	int			witdh;
 	int			py;
 	int			px;
+	int			n_move;
+	int			n_coin;
+	int			score;
+	int			old_score;
 	t_texture	base;
 }	t_map;
 

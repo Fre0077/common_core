@@ -6,7 +6,7 @@
 /*   By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 16:56:56 by fde-sant          #+#    #+#             */
-/*   Updated: 2025/01/08 16:47:12 by fde-sant         ###   ########.fr       */
+/*   Updated: 2025/01/09 14:03:26 by fde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,9 @@ int	copy_in_matrix(char **matrix, char *map_file, int size, int raw)
 int	check(char **matrix, t_map *map)
 {
 	finder_p(matrix, map);
+	map->n_move = 0;
+	map->score = 0;
+	map->old_score = -1;
 	if (check_wall(matrix, map) == 0)
 		return (ft_printf("Error\nopen wall\n"), 0);
 	if (check_cpe(matrix, map) == 0)

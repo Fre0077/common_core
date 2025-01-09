@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/08 16:24:04 by fde-sant          #+#    #+#             */
-/*   Updated: 2025/01/08 16:27:41 by fde-sant         ###   ########.fr       */
+/*   Created: 2025/01/09 13:48:08 by fde-sant          #+#    #+#             */
+/*   Updated: 2025/01/09 14:08:06 by fde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,37 @@ void	place_tale(t_texture base, t_map map, int y, int x)
 			tale(base, map.matrix[vary][varx]), (x + 10) * 32, (y + 10) * 32);
 }
 
+void	put_score(t_texture base, t_map map)
+{
+	char	*score;
+
+	mlx_string_put(base.mlx, base.win, 10, 690, 0xFFFFFF, "Score:");
+	mlx_string_put(base.mlx, base.win, 80, 690, 0xFFFFFF, "/");
+	mlx_string_put(base.mlx, base.win, 300, 690, 0xFFFFFF, "Move:");
+	score = ft_itoa(map.old_score);
+	mlx_string_put(base.mlx, base.win, 60, 690, 0x000000, score);
+	free(score);
+	score = ft_itoa(map.score);
+	mlx_string_put(base.mlx, base.win, 60, 690, 0xFFFFFF, score);
+	free(score);
+	score = ft_itoa(map.n_coin);
+	mlx_string_put(base.mlx, base.win, 100, 690, 0xFFFFFF, score);
+	free(score);
+	score = ft_itoa(map.n_move - 1);
+	mlx_string_put(base.mlx, base.win, 333, 690, 0x000000, score);
+	free(score);
+	score = ft_itoa(map.n_move);
+	mlx_string_put(base.mlx, base.win, 333, 690, 0xFFFFFF, score);
+	free(score);
+}
+
 void	set_map(t_texture base, t_map map)
 {
 	int	x;
 	int	y;
 
 	set_image(&base);
+	put_score(base, map);
 	y = -10;
 	while (y <= 10 && y + 10 < map.height)
 	{

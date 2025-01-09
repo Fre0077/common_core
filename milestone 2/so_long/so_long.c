@@ -6,7 +6,7 @@
 /*   By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 10:31:18 by fde-sant          #+#    #+#             */
-/*   Updated: 2025/01/08 16:41:21 by fde-sant         ###   ########.fr       */
+/*   Updated: 2025/01/09 14:08:29 by fde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ int	main(int ac, char **av)
 	if (ac != 2)
 		return (0);
 	map.matrix = create_matrix(av[1], &map);
+	map.n_coin = ft_countc_matrix(map.matrix, 'C', map.height);
 	if (map.matrix == NULL)
 		return (0);
 	base.mlx = mlx_init();

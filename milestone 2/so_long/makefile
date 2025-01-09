@@ -6,7 +6,7 @@
 #    By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/06 15:50:41 by fde-sant          #+#    #+#              #
-#    Updated: 2025/01/08 16:23:49 by fde-sant         ###   ########.fr        #
+#    Updated: 2025/01/09 09:25:14 by fde-sant         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,3 +57,18 @@ run:
 	@rm -rf $(LIBFT)
 	@clear
 	@cc so_long.c so_long.a -g -Lmlx -lmlx -lXext -lX11 -lm -Lmlx -lmlx -lXext -lX11 -lm -o "a"
+
+generic: run
+	./a "maps/generic.ber"
+
+debug: 
+	lldb ./a "maps/generic.ber"
+
+valgrind: 
+	valgrind --leak-check=full --track-origins=yes ./a "maps/generic.ber"
+
+small: run
+	./a "maps/small.ber"
+	
+precis: run
+	./a "maps/precis.ber"
