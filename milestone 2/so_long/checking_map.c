@@ -6,7 +6,7 @@
 /*   By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 15:06:46 by fde-sant          #+#    #+#             */
-/*   Updated: 2025/01/08 11:17:06 by fde-sant         ###   ########.fr       */
+/*   Updated: 2025/01/12 09:28:15 by fde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,17 +45,17 @@ int	check_wall(char **matrix, t_map *map)
 	i = -1;
 	while (++i < map->height)
 	{
-		if (matrix[i][0] == '0')
+		if (ft_findc("0ENPC", matrix[i][0]))
 			return (0);
-		if (matrix[i][map->witdh - 1] == '0')
+		if (ft_findc("0ENPC", matrix[i][map->witdh - 1]))
 			return (0);
 	}
 	i = -1;
 	while (++i < map->witdh)
 	{
-		if (matrix[0][i] == '0')
+		if (ft_findc("0ENPC", matrix[0][i]))
 			return (0);
-		if (matrix[map->height - 1][i] == '0')
+		if (ft_findc("0ENPC", matrix[map->height - 1][i]))
 			return (0);
 	}
 	return (1);

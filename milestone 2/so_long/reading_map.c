@@ -6,13 +6,13 @@
 /*   By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 16:56:56 by fde-sant          #+#    #+#             */
-/*   Updated: 2025/01/09 14:03:26 by fde-sant         ###   ########.fr       */
+/*   Updated: 2025/01/12 09:21:29 by fde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	finder_p(char **matrix, t_map *map)
+void	finder(char **matrix, t_map *map, char c)
 {
 	int	x;
 	int	y;
@@ -23,10 +23,18 @@ void	finder_p(char **matrix, t_map *map)
 		x = -1;
 		while (++x != map->witdh)
 		{
-			if (matrix[y][x] == 'P')
+			if (matrix[y][x] == c)
 			{
-				map->py = y;
-				map->px = x;
+				if (c == 'P')
+				{
+					map->py = y;
+					map->px = x;
+				}
+				if (c == 'E')
+				{
+					map->ey = y;
+					map->ex = x;
+				}
 				return ;
 			}
 		}
@@ -42,26 +50,25 @@ int	line_len(char *map, int *raw, char *add)
 
 	i = -1;
 	fd = open(map, O_RDONLY);
-	if (read(fd, &c, 1) <= 0)
-		return (0);
-	while (++i + 1 && c != '\n')
-		read(fd, &c, 1);
+	read_ret = read(fd, &c, 1);
+	while (++i + 1 && read_ret && c != '\n' && ft_findc("01ENPC", c) == 1)
+		read_ret = read(fd, &c, 1);
 	add = ft_calloc(i + 2);
 	read_ret = read(fd, add, i + 1);
 	while (read_ret > 0)
 	{
 		if (add[i] != '\n' && add[i] != '\0')
-			return (ft_printf("Error\nnot rettagle, colomn\n"), 0);
+			return (ft_printf("Error\nnot rettagle, colomn\n"), free(add), 0);
 		*raw = *raw + 1;
 		if (read_ret != i && read_ret != i + 1)
-			return (ft_printf("Error\nnot rettagle, raw\n"), 0);
+			return (ft_printf("Error\nnot rettagle, raw\n"), free(add), 0);
 		read_ret = read(fd, add, i + 1);
 	}
-	close(fd);
-	return (free(add), i);
+	if (i == 0)
+		return (ft_printf("Error\nbad file\n"), close(fd), free(add), i);
+	return (close(fd), free(add), i);
 }
 
-//attenzione possibile errore
 int	copy_in_matrix(char **matrix, char *map_file, int size, int raw)
 {
 	int		x;
@@ -79,7 +86,7 @@ int	copy_in_matrix(char **matrix, char *map_file, int size, int raw)
 		matrix[y] = ft_calloc(size + 1);
 		while (++x != size)
 		{
-			if (ft_findc("10PEC", add[x]) == 0)
+			if (ft_findc("10PECN", add[x]) == 0)
 				return (ft_printf("Error\ninvalid char\n"), 0);
 			matrix[y][x] = add[x];
 		}
@@ -90,7 +97,8 @@ int	copy_in_matrix(char **matrix, char *map_file, int size, int raw)
 
 int	check(char **matrix, t_map *map)
 {
-	finder_p(matrix, map);
+	finder(matrix, map, 'P');
+	finder(matrix, map, 'E');
 	map->n_move = 0;
 	map->score = 0;
 	map->old_score = -1;
@@ -122,5 +130,6 @@ char	**create_matrix(char *map_file, t_map *map)
 	if (copy_in_matrix(matrix, map_file, size, raw) == 0
 		|| check(matrix, map) == 0)
 		return (ft_freematrix(matrix, map->height), NULL);
+	rand_lily(matrix, *map);
 	return (matrix);
 }
