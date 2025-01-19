@@ -24,6 +24,8 @@ int	ft_strlen(char *str)
 	return (i);
 }
 
+
+/*
 int	confront(char *s1, char *s2, int start, int end)
 {
 	int	i;
@@ -39,6 +41,30 @@ int	confront(char *s1, char *s2, int start, int end)
 	}
 	if (s1[i] || s2[i])
 			return (0);
+	return (1);
+}*/
+
+int	confront(char *s1, char *s2, int start, int end)
+{
+	int	i;
+
+	if (start < 0 || (start >= end && end != -1))
+		return (-1);
+	i = start - 1;
+	if (end == -1)
+	{
+		if (ft_strlen(s1) != ft_strlen(s2))
+				return (0);
+		while (s1[++i])
+			if (s1[i] != s2[i])
+				return (0);
+	}
+	else
+	{
+		while (++i < end)
+			if (s1[i] != s2[i])
+				return (0);
+	}
 	return (1);
 }
 
