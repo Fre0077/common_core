@@ -6,7 +6,7 @@
 /*   By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 10:14:20 by fde-sant          #+#    #+#             */
-/*   Updated: 2025/01/19 12:21:01 by fde-sant         ###   ########.fr       */
+/*   Updated: 2025/01/20 09:31:39 by fde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,51 +87,26 @@ int	cicle(char *cmd, char **env)
 	return (1);
 }
 
-// int main(int ac, char **av, char **env)
-// {
-// 	int		i;
-// 	int		fd_out;
-// 	int		fd_in;
+int main(int ac, char **av, char **env)
+{
+	int		i;
+	int		fd_out;
+	int		fd_in;
 
-// 	if (ac < 4)
-// 		return (ft_printf("Error\ntoo few arguments\n"), 0);
-// 	fd_in = check_in(av);
-// 	fd_out = check_out(av, ac);
-// 	if (fd_in == -1 || fd_out == -1)
-// 		return (ft_printf("Error\nfile not opened\n"), 0);
-// 	i = 1;
-// 	if (confront(av[1], "here_doc", 0, -1))
-// 		i = 2;
-// 	while (++i < ac - 2)
-// 		if (cicle(av[i], env) == 0)
-// 			return (ft_printf("Error\nbad input dup\n"), 0);
-// 	if (dup2(fd_out, 1) == -1)
-// 		return (ft_printf("Error\nbad output dup\n"), 0);
-// 	process(av[i], env);
-// 	return (0);
-// }
-
-int main() {
-	char buf[100];
-	ssize_t nread;
-
-	ft_printf("pipe heredoc> ");
-	nread = read(0, buf, sizeof(buf) - 1);
-	int fd = open("cazzosecco", O_RDWR | O_CREAT | O_APPEND, 0777);
-	while (confront(buf, "penesecco", 0, -1) == 0)
-	{
-		write(fd, buf, nread);
-		ft_printf("pipe heredoc> ");
-		nread = read(0, buf, sizeof(buf) - 1);  // Leggi da stdin (file descriptor 0)
-	}
-
-	if (nread == -1) {
-		perror("read");  // Stampa errore in caso di fallimento
-		return 1;
-	}
-
-	buf[nread] = '\0';  // Assicurati che buf sia terminato da null
-	ft_printf("Hai letto: %s\n", buf);
-
-	return 0;
+	if (ac < 4)
+		return (ft_printf("Error\ntoo few arguments\n"), 0);
+	fd_in = check_in(av);
+	fd_out = check_out(av, ac);
+	if (fd_in == -1 || fd_out == -1)
+		return (ft_printf("Error\nfile not opened\n"), 0);
+	i = 1;
+	if (confront(av[1], "here_doc", 0, -1))
+		i = 2;
+	while (++i < ac - 2)
+		if (cicle(av[i], env) == 0)
+			return (ft_printf("Error\nbad input dup\n"), 0);
+	if (dup2(fd_out, 1) == -1)
+		return (ft_printf("Error\nbad output dup\n"), 0);
+	process(av[i], env);
+	return (0);
 }
