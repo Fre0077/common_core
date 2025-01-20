@@ -6,7 +6,7 @@
 /*   By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 15:04:36 by fde-sant          #+#    #+#             */
-/*   Updated: 2025/01/20 09:31:20 by fde-sant         ###   ########.fr       */
+/*   Updated: 2025/01/20 10:34:52 by fde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,31 +16,13 @@ int	ft_strlen(char *str)
 {
 	int	i;
 
-	i  = 0;
-	if (str == 	NULL)
+	i = 0;
+	if (str == NULL)
 		return (0);
 	while (str[i])
 		i++;
 	return (i);
 }
-
-// int	confront(char *s1, char *s2, int start, int end)
-// {
-// 	int	i;
-
-// 	if (start < 0 || (start >= end && end != -1))
-// 		return (-1);
-// 	i = start;
-// 	while ((i < end || end == -1) && (s1[i] && s2[i]))
-// 	{
-// 		if (s1[i] != s2[i])
-// 			return (0);
-// 		i++;
-// 	}
-// 	if (s1[i] || s2[i])
-// 			return (0);
-// 	return (1);
-// }
 
 int	confront(char *s1, char *s2, int start, int end)
 {
@@ -52,7 +34,7 @@ int	confront(char *s1, char *s2, int start, int end)
 	if (end == -1)
 	{
 		if (ft_strlen(s1) != ft_strlen(s2))
-				return (0);
+			return (0);
 		while (s1[++i])
 			if (s1[i] != s2[i])
 				return (0);
@@ -73,7 +55,7 @@ char	*dupstr(char *str, int start)
 
 	ret = malloc(ft_strlen(str) + 1 - start);
 	i = -1;
-	while(str[start])
+	while (str[start])
 		ret[++i] = str[start++];
 	ret[++i] = '\0';
 	return (ret);
@@ -82,20 +64,19 @@ char	*dupstr(char *str, int start)
 int	check_in(char **av)
 {
 	int		fd_in;
-	int		nread;
 	int		pip[2];
-	char	buf[100];
+	char	*buf;
 
 	if (confront(av[1], "here_doc", 0, -1))
 	{
 		pipe(pip);
 		ft_printf("pipe heredoc> ");
-		nread = read(0, buf, 99);
+		buf = get_next_line(0);
 		while (confront(buf, av[2], 0, ft_strlen(av[2])) == 0)
 		{
-			write(pip[1], buf, nread);
+			write(pip[1], buf, ft_strlen(buf));
 			ft_printf("pipe heredoc> ");
-			nread = read(0, buf, 99);
+			buf = get_next_line(0);
 		}
 		close(pip[1]);
 		if (dup2(pip[0], 0) == -1)

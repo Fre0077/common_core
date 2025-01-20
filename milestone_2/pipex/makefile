@@ -6,16 +6,19 @@
 #    By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/18 09:01:52 by fde-sant          #+#    #+#              #
-#    Updated: 2025/01/19 11:39:48 by fde-sant         ###   ########.fr        #
+#    Updated: 2025/01/20 10:19:43 by fde-sant         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = pipex.a
 FT_PRINTF = ft_printf/ft_printf.a
 DIR_FT_PRINTF = ft_printf/
+GET_NEXT_LINE = get_next_line/get_next_line.a
+DIR_GET_NEXT_LINE = get_next_line/
 FLAGS = -Wall -Wextra -Werror -g
 
-FILE = pipex.c ft_split_add.c utils.c
+FILE = pipex.c ft_split_add.c utils.c get_next_line/get_next_line.c\
+		get_next_line/get_next_line_utils.c
 
 OBJ = $(FILE:.c=.o)
 

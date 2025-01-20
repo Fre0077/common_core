@@ -6,7 +6,7 @@
 /*   By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 14:24:51 by fde-sant          #+#    #+#             */
-/*   Updated: 2025/01/16 16:58:22 by fde-sant         ###   ########.fr       */
+/*   Updated: 2025/01/20 10:36:08 by fde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	copy(char *str, char **arr, char c)
 	j = -1;
 	y = 0;
 	arr[y] = malloc(count(str, 1, 0, c) + 1);
-	while(str[++i])
+	while (str[++i])
 	{
 		if (str[i] != c)
 			arr[y][++j] = str[i];
@@ -89,7 +89,7 @@ char	**ft_split_add(char *str, char *add, char c)
 		return (NULL);
 	if (c == '\0')
 		return (NULL);
-	i  = count(str, 0, 0, c);
+	i = count(str, 0, 0, c);
 	arr = malloc((i + 1) * sizeof(char *));
 	copy(str, arr, c);
 	while (--i >= 0 && add != NULL)

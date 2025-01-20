@@ -6,7 +6,7 @@
 /*   By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/16 10:14:20 by fde-sant          #+#    #+#             */
-/*   Updated: 2025/01/20 09:31:39 by fde-sant         ###   ########.fr       */
+/*   Updated: 2025/01/20 10:35:25 by fde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ char	*create_path(char *command, char **env)
 	i = -1;
 	while (search[++i] != NULL)
 	{
-		if(access(search[i], X_OK) == 0)
+		if (access(search[i], X_OK) == 0)
 		{
 			path = dupstr(search[i], 0);
 			return (free_arr(com), free_arr(search), path);
@@ -63,7 +63,7 @@ void	process(char *command, char **env)
 	free(path);
 	free_arr(arg);
 }
-// 0 lettura, 1 scrittura
+
 int	cicle(char *cmd, char **env)
 {
 	pid_t	pid;
@@ -87,7 +87,7 @@ int	cicle(char *cmd, char **env)
 	return (1);
 }
 
-int main(int ac, char **av, char **env)
+int	main(int ac, char **av, char **env)
 {
 	int		i;
 	int		fd_out;
