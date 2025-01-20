@@ -6,7 +6,7 @@
 #    By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/13 19:53:43 by fde-sant          #+#    #+#              #
-#    Updated: 2025/01/15 12:09:39 by fde-sant         ###   ########.fr        #
+#    Updated: 2025/01/20 15:23:16 by fde-sant         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,10 +23,12 @@ FILE =	push_swap.c check_input.c read_input.c find_best.c algoritmh.c cheap.c\
 OBJ = $(FILE:.c=.o)
 
 all:		$(NAME)
+	@cc push_swap.c $(NAME) $(CFLAGS) -o "push_swap"
+	@make fclean
 
 $(NAME):	$(OBJ)
 	@ar rcs $(NAME) $(OBJ)
-	@echo "created .a"
+	@echo "created exe"
 
 %.o: %.c
 	@$(CC) $(CFLAGS) -c $< -o $@
@@ -47,4 +49,3 @@ run:
 	@make re
 	@make clean
 	@clear
-	@cc push_swap.c push_swap.a -Werror -Wextra -Wall -g -o "push_swap"

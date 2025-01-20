@@ -6,7 +6,7 @@
 /*   By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 19:26:21 by fde-sant          #+#    #+#             */
-/*   Updated: 2025/01/15 14:22:36 by fde-sant         ###   ########.fr       */
+/*   Updated: 2025/01/20 16:08:20 by fde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,11 @@ typedef struct s_moving
 
 long		ft_atoi(char *str);
 char		*ft_calloc(int len);
+void		free_lst(t_stack *a);
 long		*ft_ncalloc(int len);
+int			check_char(char **av);
 t_stack		*read_input(char **av);
+int			check_double(t_stack *a);
 int			ft_lstlen(t_stack *stack);
 char		**ft_split(char **s, char c);
 void		find_best(t_stack *a, long *best);
