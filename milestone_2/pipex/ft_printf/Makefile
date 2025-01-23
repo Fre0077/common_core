@@ -44,4 +44,4 @@ re:		fclean all
 # val:
 # 	@valgrind --leak-check=yes --track-origins=yes ./o
 
-# .SILENT:
+.SILENT:
