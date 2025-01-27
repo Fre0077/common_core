@@ -1,22 +1,14 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   printf.h                                        :+:      :+:    :+:   */
+/*   philosophers.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ecarbona <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: fre007 <fre007@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/26 10:48:01 by ecarbona          #+#    #+#             */
-/*   Updated: 2024/11/26 15:21:22 by ecarbona         ###   ########.fr       */
+/*   Created: 2025/01/22 14:04:00 by fre007            #+#    #+#             */
+/*   Updated: 2025/01/22 14:06:56 by fre007           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
-# include "libft/libft.h"
-# include <stdarg.h>
-
-int	ft_printf(const char *n, ...);
-int	ft_putbase(unsigned long n, char *base);
-int	ft_putbase_long(unsigned long n, char *base);
-
-#endif
+#include <unistd.h>
+#include <pthread.h>
