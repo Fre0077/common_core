@@ -22,10 +22,16 @@
 typedef struct s_table
 {
 	pthread_mutex_t	*mutex; //i mutex(forchetta)
-	int				*used_mutex; //array che indica i mutex occupati
 	pthread_t		*thread; //il thead(filosofo)
 	int				*n_eat; //numero di volte che ha mangiato
 	int				n_filo; //numero del filosofo in funzione
+	int				many_filo; //quanti filosofi
+	int				die_time; //tempo per morire
+	int				eat_time; //tempo per magiare
+	int				sleep_time; //tempo per dormire
+	int				many_eat; //quante volte devono mangiare
 }	t_table;
+
+int	ft_atoi(const char *str);
 
 #endif

@@ -10,6 +10,23 @@
 #                                                                              #
 # **************************************************************************** #
 
+NAME = philosofers
+
+FILES = test.c ft_atoi.c
+CFLAGS = -pthread -Wall -Werror -Wextra -g
+VFLAGS = -pthread -Wall -Werror -Wextra -g -fsanitize=thread
+
 all:
-	@cc test.c -pthread -Wall -Werror -Wextra -o "test"
-	@./test
+	@cc $(FILES) $(CFLAGS) -o $(NAME)
+
+clean:
+
+fclean:
+	rm $(NAME)
+
+re: fclean all
+
+valgrind:
+	@cc $(FILES) $(VFLAGS) -o $(NAME)
+
+.SILENT:
