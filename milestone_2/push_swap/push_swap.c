@@ -6,7 +6,7 @@
 /*   By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 19:26:10 by fde-sant          #+#    #+#             */
-/*   Updated: 2025/01/20 16:13:39 by fde-sant         ###   ########.fr       */
+/*   Updated: 2025/01/28 14:28:35 by fde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ int	main(int ac, char **av)
 
 	if (ac < 2 || check_char(av))
 		return (write(1, "Error\n", 6), 0);
+	if (ac == 2)
+		return (0);
 	a = read_input(av);
 	if (check_double(a))
 		return (write(1, "Error\n", 6), free_lst(a), 0);

@@ -6,7 +6,7 @@
 #    By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/13 19:53:43 by fde-sant          #+#    #+#              #
-#    Updated: 2025/01/20 15:23:16 by fde-sant         ###   ########.fr        #
+#    Updated: 2025/01/28 14:19:31 by fde-sant         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,6 @@ OBJ = $(FILE:.c=.o)
 
 all:		$(NAME)
 	@cc push_swap.c $(NAME) $(CFLAGS) -o "push_swap"
-	@make fclean
 
 $(NAME):	$(OBJ)
 	@ar rcs $(NAME) $(OBJ)
@@ -39,6 +38,7 @@ clean:
 
 fclean:		clean
 	@rm -rf $(NAME)
+	@rm -rf "push_swap"
 	@echo "removed .a"
 
 re:			fclean all

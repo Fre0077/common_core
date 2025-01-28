@@ -6,7 +6,7 @@
 /*   By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 12:13:14 by fde-sant          #+#    #+#             */
-/*   Updated: 2025/01/20 16:11:53 by fde-sant         ###   ########.fr       */
+/*   Updated: 2025/01/28 14:28:16 by fde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,11 @@ int	check_double(t_stack *a)
 	t_stack *first;
 
 	first = a;
-	(first->prev)->next = first;
+	(first->prev)->next = NULL;
 	while (a != NULL)
 	{
+		if (a->nub < -2147483648 || a->nub > 2147483647)
+			return (1);
 		if (scroll_lst(a, a->nub))
 			return (1);
 		a = a->next;
