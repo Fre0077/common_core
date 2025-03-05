@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fre007 <fre007@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 18:08:34 by fde-sant          #+#    #+#             */
-/*   Updated: 2024/12/04 11:14:18 by fde-sant         ###   ########.fr       */
+/*   Updated: 2025/01/29 09:06:32 by fre007           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,26 +55,4 @@ char	*get_next_line(int fd)
 	if (read_return <= 0)
 		free (join);
 	return (return_buffer(&buffer));
-}
-
-int main()
-{
-	int fd = open("papere", O_RDONLY);
-	// int fd1 = -1;
-	char	*str;
-	int		i = 0;
-
-	// printf("\n\n----%d\n\n", fd);
-	// fd1++;
-	// if (fd == -1)
-	// 	return (1);
-	str = get_next_line(fd);
-	while (str != NULL)
-	{
-		printf("TEST %d:\n%s", i++, str);
-		free(str);
-		str = get_next_line(fd);
-	}
-	free(str);
-	return (0);
 }

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+         #
+#    By: fre007 <fre007@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/22 09:20:40 by fde-sant          #+#    #+#              #
-#    Updated: 2025/01/22 09:40:46 by fde-sant         ###   ########.fr        #
+#    Updated: 2025/03/05 09:20:56 by fre007           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,5 +28,8 @@ re: fclean all
 
 valgrind:
 	@cc $(FILES) $(VFLAGS) -o $(NAME)
+
+run:
+	make && clear && ./philosofers 5 900 200 100
 
 .SILENT:
