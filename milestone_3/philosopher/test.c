@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fre007 <fre007@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:58:55 by fde-sant          #+#    #+#             */
-/*   Updated: 2025/03/05 09:32:14 by fre007           ###   ########.fr       */
+/*   Updated: 2025/03/05 10:22:02 by fde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,11 +90,10 @@ void	eat(t_table *table, int	i)
 		pthread_mutex_lock(&table->mutex[i]);
 	}
 	//write(1, "caio\n", 5);
-	table->last_eat[i] = 0;
+	table->last_eat[i] = actual_time(table);
 	safe_print("%lld filosofo %d, sta mangiando\n", table, i);
 	if (!table->death)
 		msleep(table->eat_time * 1000); // Simula il tempo per mangiare
-	table->last_eat[i] = actual_time(table);
 	// Rilascia entrambe le forchette
 	pthread_mutex_unlock(&table->mutex[i]);
 	pthread_mutex_unlock(&table->mutex[(i + 1) % table->many_filo]);
@@ -170,7 +169,6 @@ int	main(int ac, char **av)
 	{
 		table->n_filo = i;
 		pthread_create(&table->thread[i], NULL, table_manage, (void *)table);
-		msleep(50);
 	}
 	i = -1;
 	while (++i < table->many_filo)
