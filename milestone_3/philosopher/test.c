@@ -6,7 +6,7 @@
 /*   By: fre007 <fre007@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:58:55 by fde-sant          #+#    #+#             */
-/*   Updated: 2025/03/05 09:32:14 by fre007           ###   ########.fr       */
+/*   Updated: 2025/03/05 09:41:18 by fre007           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,17 +58,17 @@ void	*death_checker(void *temp)
 		i = -1;
 		msleep (1000);
 		time = actual_time(table);
-		pthread_mutex_lock(&table->death_mutex);
 		while (++i < table->many_filo)
 		{
+			pthread_mutex_lock(&table->death_mutex);
 			if (table->last_eat[i] != 0 && (table->n_eat[i] < table->many_eat || table->many_eat == 0)
 				&& time - table->last_eat[i] > table->die_time)
 			{
 				safe_print("%lld filosofo %d, è morto\n", table, i);
 				table->death = 1;
 			}
+			pthread_mutex_unlock(&table->death_mutex);
 		}
-		pthread_mutex_unlock(&table->death_mutex);
 		if (table->death)
 			break ;
 	}
