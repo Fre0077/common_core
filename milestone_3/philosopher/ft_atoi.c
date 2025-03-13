@@ -6,11 +6,11 @@
 /*   By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 18:45:26 by fde-sant          #+#    #+#             */
-/*   Updated: 2024/11/19 20:32:16 by fde-sant         ###   ########.fr       */
+/*   Updated: 2025/03/13 12:14:40 by fde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosophers.h"
+#include "philosofers.h"
 
 int	ft_isdigit(int a)
 {
@@ -19,7 +19,7 @@ int	ft_isdigit(int a)
 	return (0);
 }
 
-static int	ft_iswhitespace(char c)
+int	ft_iswhitespace(char c)
 {
 	if (c == ' ' || c == '\t' || c == '\n' || c == '\f'
 		|| c == '\v' || c == '\r')
@@ -46,6 +46,8 @@ int	ft_atoi(const char *str)
 		i++;
 	while (str[i] != '\0' && ft_isdigit(str[i]))
 		num = (num * 10) + (str[i++] - '0');
+	if (str[i])
+		return (-1);
 	num = num * sign;
 	return (num);
 }
