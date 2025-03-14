@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: fre007 <fre007@student.42.fr>              +#+  +:+       +#+         #
+#    By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/22 09:20:40 by fde-sant          #+#    #+#              #
-#    Updated: 2025/03/05 09:20:56 by fre007           ###   ########.fr        #
+#    Updated: 2025/03/13 12:28:03 by fde-sant         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philosofers
 
-FILES = test.c ft_atoi.c
+FILES = philosofer.c ft_atoi.c support_function.c table_work.c
 CFLAGS = -pthread -Wall -Werror -Wextra -g
 VFLAGS = -pthread -Wall -Werror -Wextra -g -fsanitize=thread
 
@@ -30,6 +30,12 @@ valgrind:
 	@cc $(FILES) $(VFLAGS) -o $(NAME)
 
 run:
-	make && clear && ./philosofers 5 900 200 100
+	make && clear && ./philosofers 5 800 200 100 
+
+hell:
+	make && clear && valgrind --tool=helgrind  --log-file=valgrind_output.txt ./philosofers 5 100 200 100
+
+vall:
+	make && clear && valgrind --leak-check=yes --track-origins=yes --log-file=valgrind_output.txt ./philosofers 5 100 200 100
 
 .SILENT:
