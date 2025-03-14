@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   support_function.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fre007 <fre007@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 10:58:28 by fde-sant          #+#    #+#             */
-/*   Updated: 2025/03/13 12:33:04 by fde-sant         ###   ########.fr       */
+/*   Updated: 2025/03/14 12:55:23 by fre007           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,12 @@ long long	actual_time(t_table *table)
 
 void	death_print(char *str, t_table *table, int i)
 {
-	pthread_mutex_lock(&table->death_print_mutex);
+	pthread_mutex_lock(&table->death_mutex);
+	table->death = 1;
+	pthread_mutex_unlock(&table->death_mutex);
+	pthread_mutex_lock(&table->print_mutex);
 	printf(str, actual_time(table), i + 1);
-	pthread_mutex_unlock(&table->death_print_mutex);
+	pthread_mutex_unlock(&table->print_mutex);
 }
 
 void	safe_print(char *str, t_table *table, int i)
@@ -63,9 +66,7 @@ void	safe_print(char *str, t_table *table, int i)
 	death = table->death;
 	pthread_mutex_unlock(&table->death_mutex);
 	pthread_mutex_lock(&table->print_mutex);
-	pthread_mutex_lock(&table->death_print_mutex);
 	if (!death)
 		printf(str, actual_time(table), i + 1);
-	pthread_mutex_unlock(&table->death_print_mutex);
 	pthread_mutex_unlock(&table->print_mutex);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosofer.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fre007 <fre007@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:58:55 by fde-sant          #+#    #+#             */
-/*   Updated: 2025/03/13 12:30:01 by fde-sant         ###   ########.fr       */
+/*   Updated: 2025/03/14 12:57:27 by fre007           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,7 @@ void	*death_checker(void *temp)
 			{
 				pthread_mutex_unlock(&table->death_cond_mutex);
 				death_print("%lld %d died\n", table, i);
-				pthread_mutex_lock(&table->death_mutex);
-				table->death = 1;
-				return (pthread_mutex_unlock(&table->death_mutex), NULL);
+				return (NULL);
 			}
 			pthread_mutex_unlock(&table->death_cond_mutex);
 		}
@@ -44,7 +42,7 @@ void	*death_checker(void *temp)
 void	eat(t_table *table, int i)
 {
 	safe_print("%lld %d is thinking\n", table, i);
-	msleep(100, table);
+	//msleep(500, table);
 	if (i % 2 == 0)
 	{
 		pthread_mutex_lock(&table->mutex[(i + 1) % table->many_filo]);
@@ -64,7 +62,7 @@ void	eat(t_table *table, int i)
 	pthread_mutex_unlock(&table->mutex[(i + 1) % table->many_filo]);
 	pthread_mutex_unlock(&table->mutex[i]);
 	safe_print("%lld %d is sleeping\n", table, i);
-	usleep(table->sleep_time * 1000);
+	msleep((table->sleep_time * 1000) + 100, table);
 }
 
 void	*table_manage(void *temp)
