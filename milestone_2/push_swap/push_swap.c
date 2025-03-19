@@ -6,7 +6,7 @@
 /*   By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 19:26:10 by fde-sant          #+#    #+#             */
-/*   Updated: 2025/01/28 14:28:35 by fde-sant         ###   ########.fr       */
+/*   Updated: 2025/01/28 14:55:43 by fde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	free_lst(t_stack *a)
 	t_stack	*next;
 
 	next = a->next;
-	(a->prev)->next = 	NULL;
+	(a->prev)->next = NULL;
 	while (next != NULL)
 	{
 		next = a->next;

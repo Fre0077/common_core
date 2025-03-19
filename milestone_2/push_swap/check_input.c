@@ -6,7 +6,7 @@
 /*   By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 12:13:14 by fde-sant          #+#    #+#             */
-/*   Updated: 2025/01/28 14:28:16 by fde-sant         ###   ########.fr       */
+/*   Updated: 2025/01/28 14:55:53 by fde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	scroll_lst(t_stack *a, int nub)
 
 int	check_double(t_stack *a)
 {
-	t_stack *first;
+	t_stack	*first;
 
 	first = a;
 	(first->prev)->next = NULL;
