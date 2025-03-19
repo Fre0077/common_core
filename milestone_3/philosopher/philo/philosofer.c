@@ -6,11 +6,11 @@
 /*   By: fre007 <fre007@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:58:55 by fde-sant          #+#    #+#             */
-/*   Updated: 2025/03/14 12:57:27 by fre007           ###   ########.fr       */
+/*   Updated: 2025/03/18 17:51:46 by fre007           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosofers.h"
+#include "philosofer.h"
 
 void	*death_checker(void *temp)
 {

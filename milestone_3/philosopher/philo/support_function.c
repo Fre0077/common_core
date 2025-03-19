@@ -6,11 +6,11 @@
 /*   By: fre007 <fre007@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 10:58:28 by fde-sant          #+#    #+#             */
-/*   Updated: 2025/03/14 12:55:23 by fre007           ###   ########.fr       */
+/*   Updated: 2025/03/18 17:51:54 by fre007           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosofers.h"
+#include "philosofer.h"
 
 void	msleep(long long wait_time, t_table *table)
 {

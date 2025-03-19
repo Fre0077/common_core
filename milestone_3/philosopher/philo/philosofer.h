@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philosofers.h                                      :+:      :+:    :+:   */
+/*   philosofer.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fre007 <fre007@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:58:37 by fde-sant          #+#    #+#             */
-/*   Updated: 2025/03/14 12:54:45 by fre007           ###   ########.fr       */
+/*   Updated: 2025/03/18 17:50:13 by fre007           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILOSOFERS_H
-# define PHILOSOFERS_H
+#ifndef PHILOSOFER_H
+# define PHILOSOFER_H
 
 # include <stdio.h>
 # include <stdlib.h>
