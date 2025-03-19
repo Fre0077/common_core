@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   table_work.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fre007 <fre007@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 12:03:20 by fde-sant          #+#    #+#             */
-/*   Updated: 2025/03/13 12:32:06 by fde-sant         ###   ########.fr       */
+/*   Updated: 2025/03/18 17:51:58 by fre007           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosofers.h"
+#include "philosofer.h"
 
 void	init_mutex(t_table *table)
 {
