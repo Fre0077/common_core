@@ -6,11 +6,32 @@
 /*   By: fre007 <fre007@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:58:55 by fde-sant          #+#    #+#             */
-/*   Updated: 2025/03/18 17:51:46 by fre007           ###   ########.fr       */
+/*   Updated: 2025/03/19 08:33:38 by fre007           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosofer.h"
+#include "philosofers.h"
+
+int	full_check(t_table *table)
+{
+	int	i;
+
+	i = 0;
+	while (++i < table->many_filo)
+	{
+		pthread_mutex_lock(&table->death_cond_mutex);
+		if (table->many_eat!= 0 && table->n_eat[i] < table->many_eat)
+		{
+			pthread_mutex_unlock(&table->death_cond_mutex);
+			break ;
+		}
+		pthread_mutex_unlock(&table->death_cond_mutex);
+	}
+	if (i == table->many_filo)
+		return (0);
+	else
+		return (1);
+}
 
 void	*death_checker(void *temp)
 {
@@ -24,11 +45,12 @@ void	*death_checker(void *temp)
 		i = -1;
 		msleep (1000, table);
 		time = actual_time(table);
+		if (full_check(table))
+			return (NULL);
 		while (++i < table->many_filo)
 		{
 			pthread_mutex_lock(&table->death_cond_mutex);
-			if ((table->n_eat[i] < table->many_eat || table->many_eat == 0)
-				&& time - table->last_eat[i] > table->die_time)
+			if (time - table->last_eat[i] > table->die_time)
 			{
 				pthread_mutex_unlock(&table->death_cond_mutex);
 				death_print("%lld %d died\n", table, i);
@@ -42,17 +64,17 @@ void	*death_checker(void *temp)
 void	eat(t_table *table, int i)
 {
 	safe_print("%lld %d is thinking\n", table, i);
-	//msleep(500, table);
-	if (i % 2 == 0)
+	if (i % 2 == 1)
 	{
-		pthread_mutex_lock(&table->mutex[(i + 1) % table->many_filo]);
-		pthread_mutex_lock(&table->mutex[i]);
+		msleep(1000, table);
+		// pthread_mutex_lock(&table->mutex[(i + 1) % table->many_filo]);
+		// pthread_mutex_lock(&table->mutex[i]);
 	}
-	else
-	{
-		pthread_mutex_lock(&table->mutex[i]);
-		pthread_mutex_lock(&table->mutex[(i + 1) % table->many_filo]);
-	}
+	// else
+	// {
+	// 	pthread_mutex_lock(&table->mutex[i]);
+	// 	pthread_mutex_lock(&table->mutex[(i + 1) % table->many_filo]);
+	// }
 	pthread_mutex_lock(&table->death_cond_mutex);
 	table->last_eat[i] = actual_time(table);
 	table->n_eat[i] += 1;
@@ -84,7 +106,7 @@ void	*table_manage(void *temp)
 		if (table->many_eat && table->n_eat[i] == table->many_eat)
 		{
 			pthread_mutex_unlock(&table->death_cond_mutex);
-			return (safe_print("%lld filosofo %d, è sazio\n", table, i), NULL);
+			return (NULL);
 		}
 		pthread_mutex_unlock(&table->death_cond_mutex);
 		eat(table, i);
