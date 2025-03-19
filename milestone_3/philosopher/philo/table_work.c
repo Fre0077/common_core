@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   table_work.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fre007 <fre007@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 12:03:20 by fde-sant          #+#    #+#             */
-/*   Updated: 2025/03/18 17:51:58 by fre007           ###   ########.fr       */
+/*   Updated: 2025/03/19 10:19:41 by fde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void	init_mutex(t_table *table)
 	pthread_mutex_init(&table->death_print_mutex, NULL);
 	pthread_mutex_init(&table->n_filo_mutex, NULL);
 	pthread_mutex_init(&table->print_mutex, NULL);
-	pthread_mutex_init(&table->time_mutex, NULL);
 }
 
 void	init_table(t_table *table, char **av, int ac)
@@ -68,8 +67,6 @@ void	free_all(t_table *table)
 	pthread_mutex_destroy(&table->death_print_mutex);
 	pthread_mutex_destroy(&table->print_mutex);
 	pthread_mutex_destroy(&table->n_filo_mutex);
-	pthread_mutex_destroy(&table->time_mutex);
-	pthread_mutex_init(&table->time_mutex, NULL);
 	free(table->mutex);
 	free(table->thread);
 	free(table->n_eat);

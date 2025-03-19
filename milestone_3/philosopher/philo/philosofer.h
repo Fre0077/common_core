@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosofer.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fre007 <fre007@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:58:37 by fde-sant          #+#    #+#             */
-/*   Updated: 2025/03/18 17:50:13 by fre007           ###   ########.fr       */
+/*   Updated: 2025/03/19 10:19:09 by fde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ typedef struct s_table
 	pthread_mutex_t	print_mutex;
 	pthread_mutex_t	n_filo_mutex;
 	pthread_mutex_t	many_filo_mutex;
-	pthread_mutex_t	time_mutex;
 	pthread_t		*thread; //il thead(filosofo)
 	pthread_t		gurdian; //guardiano assoluto
 	int				*n_eat; //numero di volte che ha mangiato

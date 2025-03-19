@@ -1,16 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   support_function.c                                 :+:      :+:    :+:   */
+/*   support_function_bonus.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 10:58:28 by fde-sant          #+#    #+#             */
-/*   Updated: 2025/03/19 09:28:59 by fde-sant         ###   ########.fr       */
+/*   Updated: 2025/03/19 10:24:16 by fde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosofer.h"
+#include "philosofer_bonus.h"
+
+void	multi_post(sem_t *sem, int i)
+{
+	while (--i >= 0)
+		sem_post(sem);
+}
 
 void	msleep(long long wait_time, t_table *table)
 {
@@ -23,13 +29,6 @@ void	msleep(long long wait_time, t_table *table)
 	time = (tv.tv_sec * 1000000) + (tv.tv_usec);
 	while (time < limit)
 	{
-		pthread_mutex_lock(&table->death_mutex);
-		if (table->death)
-		{
-			pthread_mutex_unlock(&table->death_mutex);
-			return ;
-		}
-		pthread_mutex_unlock(&table->death_mutex);
 		gettimeofday(&tv, NULL);
 		time = (tv.tv_sec * 1000000) + (tv.tv_usec);
 	}
@@ -40,33 +39,15 @@ long long	actual_time(t_table *table)
 	struct timeval	tv;
 	long long		time;
 
-	//pthread_mutex_lock(&table->time_mutex);
 	gettimeofday(&tv, NULL);
 	time = (tv.tv_sec * 1000) + (tv.tv_usec / 1000);
 	time = time - table->start;
-	//pthread_mutex_unlock(&table->time_mutex);
 	return (time);
-}
-
-void	death_print(char *str, t_table *table, int i)
-{
-	pthread_mutex_lock(&table->death_mutex);
-	table->death = 1;
-	pthread_mutex_unlock(&table->death_mutex);
-	pthread_mutex_lock(&table->print_mutex);
-	printf(str, actual_time(table), i + 1);
-	pthread_mutex_unlock(&table->print_mutex);
 }
 
 void	safe_print(char *str, t_table *table, int i)
 {
-	int	death;
-
-	pthread_mutex_lock(&table->death_mutex);
-	death = table->death;
-	pthread_mutex_unlock(&table->death_mutex);
-	pthread_mutex_lock(&table->print_mutex);
-	if (!death)
-		printf(str, actual_time(table), i + 1);
-	pthread_mutex_unlock(&table->print_mutex);
+	sem_wait(table->print);
+	printf(str, actual_time(table), i + 1);
+	sem_post(table->print);
 }

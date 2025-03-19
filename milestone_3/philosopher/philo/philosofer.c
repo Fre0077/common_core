@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   philosofer.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fre007 <fre007@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:58:55 by fde-sant          #+#    #+#             */
-/*   Updated: 2025/03/19 08:33:38 by fre007           ###   ########.fr       */
+/*   Updated: 2025/03/19 09:37:37 by fde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosofers.h"
+#include "philosofer.h"
 
 int	full_check(t_table *table)
 {
@@ -67,22 +67,22 @@ void	eat(t_table *table, int i)
 	if (i % 2 == 1)
 	{
 		msleep(1000, table);
-		// pthread_mutex_lock(&table->mutex[(i + 1) % table->many_filo]);
-		// pthread_mutex_lock(&table->mutex[i]);
+		pthread_mutex_lock(&table->mutex[(i + 1) % table->many_filo]);
+		pthread_mutex_lock(&table->mutex[i]);
 	}
-	// else
-	// {
-	// 	pthread_mutex_lock(&table->mutex[i]);
-	// 	pthread_mutex_lock(&table->mutex[(i + 1) % table->many_filo]);
-	// }
+	else
+	{
+		pthread_mutex_lock(&table->mutex[i]);
+		pthread_mutex_lock(&table->mutex[(i + 1) % table->many_filo]);
+	}
 	pthread_mutex_lock(&table->death_cond_mutex);
 	table->last_eat[i] = actual_time(table);
 	table->n_eat[i] += 1;
 	pthread_mutex_unlock(&table->death_cond_mutex);
 	safe_print("%lld %d is eating\n", table, i);
 	msleep(table->eat_time * 1000, table);
-	pthread_mutex_unlock(&table->mutex[(i + 1) % table->many_filo]);
 	pthread_mutex_unlock(&table->mutex[i]);
+	pthread_mutex_unlock(&table->mutex[(i + 1) % table->many_filo]);
 	safe_print("%lld %d is sleeping\n", table, i);
 	msleep((table->sleep_time * 1000) + 100, table);
 }
