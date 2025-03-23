@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fre007 <fre007@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 18:45:26 by fde-sant          #+#    #+#             */
-/*   Updated: 2025/03/18 17:51:51 by fre007           ###   ########.fr       */
+/*   Updated: 2025/03/20 12:10:59 by fde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosofer.h"
 
+//verifica che il carattere passato sia una lettera
 int	ft_isdigit(int a)
 {
 	if (a >= '0' && a <= '9')
@@ -19,6 +20,7 @@ int	ft_isdigit(int a)
 	return (0);
 }
 
+//verifica che il carattere passato sia un whitespace
 int	ft_iswhitespace(char c)
 {
 	if (c == ' ' || c == '\t' || c == '\n' || c == '\f'
@@ -29,6 +31,7 @@ int	ft_iswhitespace(char c)
 	return (0);
 }
 
+//converte una stringa in un intero(lievemente modificata per philosofer)
 int	ft_atoi(const char *str)
 {
 	int	i;

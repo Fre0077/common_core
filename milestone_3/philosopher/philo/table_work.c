@@ -6,12 +6,13 @@
 /*   By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 12:03:20 by fde-sant          #+#    #+#             */
-/*   Updated: 2025/03/19 10:19:41 by fde-sant         ###   ########.fr       */
+/*   Updated: 2025/03/20 12:16:58 by fde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosofer.h"
 
+//inizializza tutti mutex del tavolo
 void	init_mutex(t_table *table)
 {
 	int	i;
@@ -27,6 +28,7 @@ void	init_mutex(t_table *table)
 	pthread_mutex_init(&table->print_mutex, NULL);
 }
 
+//allestisce tutta la tavola
 void	init_table(t_table *table, char **av, int ac)
 {
 	int				i;
@@ -55,6 +57,7 @@ void	init_table(t_table *table, char **av, int ac)
 	init_mutex(table);
 }
 
+//libera tutta la tavola
 void	free_all(t_table *table)
 {
 	int	i;

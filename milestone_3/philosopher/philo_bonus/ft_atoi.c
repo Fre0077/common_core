@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fre007 <fre007@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 18:45:26 by fde-sant          #+#    #+#             */
-/*   Updated: 2025/03/18 17:51:51 by fre007           ###   ########.fr       */
+/*   Updated: 2025/03/20 07:58:32 by fde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosofer.h"
+#include "philosofer_bonus.h"
 
 int	ft_isdigit(int a)
 {

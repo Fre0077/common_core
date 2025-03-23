@@ -6,19 +6,14 @@
 /*   By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 10:58:28 by fde-sant          #+#    #+#             */
-/*   Updated: 2025/03/19 10:24:16 by fde-sant         ###   ########.fr       */
+/*   Updated: 2025/03/21 12:21:25 by fde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosofer_bonus.h"
 
-void	multi_post(sem_t *sem, int i)
-{
-	while (--i >= 0)
-		sem_post(sem);
-}
-
-void	msleep(long long wait_time, t_table *table)
+//riproduzione del usleep con modifiche
+void	msleep(long long wait_time)
 {
 	struct timeval	tv;
 	long long		time;
@@ -34,6 +29,7 @@ void	msleep(long long wait_time, t_table *table)
 	}
 }
 
+//ritorna il tempo passato dall'inizio del programma
 long long	actual_time(t_table *table)
 {
 	struct timeval	tv;
@@ -45,9 +41,28 @@ long long	actual_time(t_table *table)
 	return (time);
 }
 
+//print esclusivo per quando muore un filosofo
+void	death_print(char *str, t_table *table, int i)
+{
+	sem_wait(table->check);
+	sem_wait(table->print);
+	if (table->death_check)
+	{
+		printf(str, actual_time(table), i + 1);
+	}
+	sem_post(table->print);
+	sem_post(table->check);
+}
+
+//print sicuro per la stampa
 void	safe_print(char *str, t_table *table, int i)
 {
+	sem_wait(table->death_print);
+	sem_post(table->death_print);
+	sem_wait(table->check);
 	sem_wait(table->print);
-	printf(str, actual_time(table), i + 1);
+	if (table->death_check)
+		printf(str, actual_time(table), i + 1);
 	sem_post(table->print);
+	sem_post(table->check);
 }

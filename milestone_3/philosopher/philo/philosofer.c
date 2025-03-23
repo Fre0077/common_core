@@ -6,21 +6,22 @@
 /*   By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 16:58:55 by fde-sant          #+#    #+#             */
-/*   Updated: 2025/03/19 09:37:37 by fde-sant         ###   ########.fr       */
+/*   Updated: 2025/03/23 11:28:47 by fde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosofer.h"
 
+//controlla che non tutti i filosofi siano sazzi
 int	full_check(t_table *table)
 {
 	int	i;
 
-	i = 0;
+	i = -1;
 	while (++i < table->many_filo)
 	{
 		pthread_mutex_lock(&table->death_cond_mutex);
-		if (table->many_eat!= 0 && table->n_eat[i] < table->many_eat)
+		if (table->many_eat != 0 && table->n_eat[i] < table->many_eat)
 		{
 			pthread_mutex_unlock(&table->death_cond_mutex);
 			break ;
@@ -33,6 +34,7 @@ int	full_check(t_table *table)
 		return (1);
 }
 
+//controlla che tutti i filosofi siano vivi e che non siano sazzi
 void	*death_checker(void *temp)
 {
 	t_table			*table;
@@ -61,20 +63,24 @@ void	*death_checker(void *temp)
 	}
 }
 
+//mangiano e dormono
 void	eat(t_table *table, int i)
 {
 	safe_print("%lld %d is thinking\n", table, i);
-	if (i % 2 == 1)
+	if (i == table->many_filo - 1)
 	{
-		msleep(1000, table);
 		pthread_mutex_lock(&table->mutex[(i + 1) % table->many_filo]);
+		safe_print("%lld %d has taken a fork\n", table, i);
 		pthread_mutex_lock(&table->mutex[i]);
 	}
 	else
 	{
+		msleep(100, table);
 		pthread_mutex_lock(&table->mutex[i]);
+		safe_print("%lld %d has taken a fork\n", table, i);
 		pthread_mutex_lock(&table->mutex[(i + 1) % table->many_filo]);
 	}
+	safe_print("%lld %d has taken a fork\n", table, i);
 	pthread_mutex_lock(&table->death_cond_mutex);
 	table->last_eat[i] = actual_time(table);
 	table->n_eat[i] += 1;
@@ -87,6 +93,7 @@ void	eat(t_table *table, int i)
 	msleep((table->sleep_time * 1000) + 100, table);
 }
 
+//gestione delle dinamiche del tavolo per fa mangiare i philosofi
 void	*table_manage(void *temp)
 {
 	t_table	*table;
@@ -133,8 +140,8 @@ int	main(int ac, char **av)
 		table->last_eat[i] = actual_time(table);
 		pthread_mutex_unlock(&table->death_cond_mutex);
 		pthread_create(&table->thread[i], NULL, table_manage, (void *)table);
+		msleep(500, table);
 	}
-	msleep(50, table);
 	pthread_create(&table->gurdian, NULL, death_checker, (void *)table);
 	i = -1;
 	while (++i < table->many_filo)

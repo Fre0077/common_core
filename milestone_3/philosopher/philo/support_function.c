@@ -6,12 +6,13 @@
 /*   By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 10:58:28 by fde-sant          #+#    #+#             */
-/*   Updated: 2025/03/19 09:28:59 by fde-sant         ###   ########.fr       */
+/*   Updated: 2025/03/20 12:14:23 by fde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosofer.h"
 
+//riproduce il comportamento di usleep interormpendosi in caso di morte
 void	msleep(long long wait_time, t_table *table)
 {
 	struct timeval	tv;
@@ -35,19 +36,19 @@ void	msleep(long long wait_time, t_table *table)
 	}
 }
 
+//ritorna il tempo in millisecondi passato dall'inizio del programma
 long long	actual_time(t_table *table)
 {
 	struct timeval	tv;
 	long long		time;
 
-	//pthread_mutex_lock(&table->time_mutex);
 	gettimeofday(&tv, NULL);
 	time = (tv.tv_sec * 1000) + (tv.tv_usec / 1000);
 	time = time - table->start;
-	//pthread_mutex_unlock(&table->time_mutex);
 	return (time);
 }
 
+//print esclusivo per quando muore un filosofo
 void	death_print(char *str, t_table *table, int i)
 {
 	pthread_mutex_lock(&table->death_mutex);
@@ -58,6 +59,7 @@ void	death_print(char *str, t_table *table, int i)
 	pthread_mutex_unlock(&table->print_mutex);
 }
 
+//funzione di print resa sicura tramite mutex
 void	safe_print(char *str, t_table *table, int i)
 {
 	int	death;
