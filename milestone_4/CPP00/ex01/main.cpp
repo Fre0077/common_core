@@ -3,24 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fre007 <fre007@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 15:42:09 by fde-sant          #+#    #+#             */
-/*   Updated: 2025/03/23 18:32:42 by fde-sant         ###   ########.fr       */
+/*   Updated: 2025/03/25 11:45:39 by fre007           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
 
-int main(int ac, char **av)
+int main()
 {
-	if (ac == 1)
+	PhoneBook phonebook;
+	std::string command;
+
+	while (true)
 	{
-		std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *" << std::endl;
-		return (0);
+		std::cout << "Enter command (ADD, SEARCH, EXIT): ";
+		std::getline(std::cin, command);
+		for (int i = 0; command[i]; i++)
+			command[i] = (char)std::toupper(command[i]);
+		if (command == "ADD") {
+			phonebook.addContact();
+		} else if (command == "SEARCH") {
+			phonebook.searchContact();
+		} else if (command == "EXIT") {
+			break;
+		}
 	}
-	for (int i = 1; i < ac; i++)
-		for (int j = 0; av[i][j]; j++)
-			std::cout << (char)std::toupper(av[i][j]);
-	return (0);
+	return 0;
 }

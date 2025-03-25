@@ -3,11 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   PhoneBook.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fre007 <fre007@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 18:30:25 by fde-sant          #+#    #+#             */
-/*   Updated: 2025/03/23 18:32:05 by fde-sant         ###   ########.fr       */
+/*   Updated: 2025/03/25 11:26:33 by fre007           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Contact.cpp"
+#ifndef PHONEBOOK_HPP
+# define PHONEBOOK_HPP
+
+#include "Contact.hpp"
+
+class PhoneBook
+{
+private:
+	Contact contacts[8];
+	int		nextIndex;
+	int		size;
+
+public:
+	PhoneBook();
+	void addContact();
+	void searchContact();
+};
+
+#endif

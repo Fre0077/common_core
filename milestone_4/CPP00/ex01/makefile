@@ -3,20 +3,20 @@
 #                                                         :::      ::::::::    #
 #    makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+         #
+#    By: fre007 <fre007@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/23 15:41:55 by fde-sant          #+#    #+#              #
-#    Updated: 2025/03/23 16:02:05 by fde-sant         ###   ########.fr        #
+#    Updated: 2025/03/25 11:07:52 by fre007           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = megaphone
+NAME = PhoneBook
 
-FILES = megaphone.cpp
+FILES = main.cpp PhoneBook.cpp Contact.cpp
 CFLAGS = -std=c++98 -Wall -Werror -Wextra -g
 
 all:
-	@g++ $(FILES) $(CFLAGS) -o $(NAME)
+	@c++ $(FILES) $(CFLAGS) -o $(NAME)
 
 clean:
 
