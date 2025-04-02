@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   save_heredoc.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fre007 <fre007@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 15:33:18 by alborghi          #+#    #+#             */
-/*   Updated: 2025/03/23 10:01:38 by fde-sant         ###   ########.fr       */
+/*   Updated: 2025/03/28 10:21:46 by fre007           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ int	save_heredoc(t_cmd *cmd, int n)
 {
 	int		i;
 	int		fd;
-	int		flag;
 	int		j;
 
 	cmd->here_file = ft_strjoin_free_2("tmp/.heredoc_", ft_itoa(n));
@@ -61,7 +60,6 @@ int	save_heredoc(t_cmd *cmd, int n)
 	if (fd == -1)
 		return (1);
 	i = ft_char_mat_len(cmd->delimiter) - 1;
-	flag = 1;
 	j = 1;
 	while (cmd->delimiter[i])
 	{

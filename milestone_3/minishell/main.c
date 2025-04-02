@@ -6,7 +6,7 @@
 /*   By: fre007 <fre007@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 18:06:42 by alborghi          #+#    #+#             */
-/*   Updated: 2025/03/25 12:28:06 by fre007           ###   ########.fr       */
+/*   Updated: 2025/03/28 10:21:27 by fre007           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,6 @@ int	heredoc_check(t_data *data)
 // ctrl + d -> EOF (get_next_line returns NULL) -> exit
 int	main(int ac, char **av, char **env)
 {
-	char	*line;
 	t_data	data;
 
 	(void)ac;
@@ -101,7 +100,6 @@ int	main(int ac, char **av, char **env)
 		ft_exit(&data, 1);
 	using_history();
 	init_signals();
-	line = NULL;
 	while (1)
 	{
 		data.status = 0;
