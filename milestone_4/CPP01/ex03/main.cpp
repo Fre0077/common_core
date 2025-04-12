@@ -5,25 +5,32 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fre007 <fre007@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/02 14:43:58 by fre007            #+#    #+#             */
-/*   Updated: 2025/04/02 17:01:04 by fre007           ###   ########.fr       */
+/*   Created: 2025/04/08 14:40:05 by fre007            #+#    #+#             */
+/*   Updated: 2025/04/08 17:45:11 by fre007           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "zombie.hpp"
+#include "HumanA.hpp"
+#include "HumanB.hpp"
 
-int main ()
+
+int main()
 {
-	std::string	name;
-	Zombie*		zombie;
-
-	std::cout << "zombie name: ";
-	getline(std::cin, name);
-    std::cout << "Creating a zombie on the heap:" << std::endl;
-	zombie = newZombie(name);
-	zombie->announce();
-    delete zombie;
-    std::cout << "Creating a zombie on the stack:" << std::endl;
-	randomChump(name);
-	return (0);
+{
+Weapon club = Weapon("crude spiked club");
+HumanA bob("Bob", club);
+bob.attack();
+club.setType("some other type of club");
+bob.attack();
 }
+{
+Weapon club = Weapon("crude spiked club");
+HumanB jim("Jim");
+jim.setWeapon(club);
+jim.attack();
+club.setType("some other type of club");
+jim.attack();
+}
+return 0;
+}
+

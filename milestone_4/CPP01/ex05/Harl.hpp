@@ -1,29 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Harl.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fre007 <fre007@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/02 14:43:58 by fre007            #+#    #+#             */
-/*   Updated: 2025/04/02 17:01:04 by fre007           ###   ########.fr       */
+/*   Created: 2025/04/09 10:03:09 by fre007            #+#    #+#             */
+/*   Updated: 2025/04/09 10:24:55 by fre007           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "zombie.hpp"
+#include <iostream>
+#include <iomanip>
+#include <fstream>
+#include <cctype>
+#include <string>
 
-int main ()
+class Harl
 {
-	std::string	name;
-	Zombie*		zombie;
+	private:
+		void	debug( void );
+		void	info( void );
+		void	warning( void );
+		void	error( void );
 
-	std::cout << "zombie name: ";
-	getline(std::cin, name);
-    std::cout << "Creating a zombie on the heap:" << std::endl;
-	zombie = newZombie(name);
-	zombie->announce();
-    delete zombie;
-    std::cout << "Creating a zombie on the stack:" << std::endl;
-	randomChump(name);
-	return (0);
-}
+	public:
+		Harl();
+		~Harl();
+		void	complain(std::string);
+};

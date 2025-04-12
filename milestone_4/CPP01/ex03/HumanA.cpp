@@ -1,29 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   HumanA.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fre007 <fre007@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/02 14:43:58 by fre007            #+#    #+#             */
-/*   Updated: 2025/04/02 17:01:04 by fre007           ###   ########.fr       */
+/*   Created: 2025/04/08 15:50:03 by fre007            #+#    #+#             */
+/*   Updated: 2025/04/08 16:46:35 by fre007           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "zombie.hpp"
+#include "HumanA.hpp"
 
-int main ()
+HumanA::HumanA(std::string name, Weapon &weapon) : name(name), weapon(weapon) {}
+
+HumanA::~HumanA()
 {
-	std::string	name;
-	Zombie*		zombie;
+	std::cout << "destroing HumanA" << std::endl;
+}
 
-	std::cout << "zombie name: ";
-	getline(std::cin, name);
-    std::cout << "Creating a zombie on the heap:" << std::endl;
-	zombie = newZombie(name);
-	zombie->announce();
-    delete zombie;
-    std::cout << "Creating a zombie on the stack:" << std::endl;
-	randomChump(name);
-	return (0);
+void	HumanA::setWeapon(Weapon weapon)
+{
+	this->weapon = weapon;
+}
+
+void	HumanA::attack() const
+{
+	std::cout << this->name << " attacks with their " << this->weapon.getType() << std::endl;
 }

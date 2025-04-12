@@ -1,29 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   zombie.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fre007 <fre007@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/02 14:43:58 by fre007            #+#    #+#             */
-/*   Updated: 2025/04/02 17:01:04 by fre007           ###   ########.fr       */
+/*   Created: 2025/04/02 14:43:56 by fre007            #+#    #+#             */
+/*   Updated: 2025/04/08 11:10:54 by fre007           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "zombie.hpp"
+#ifndef ZOMBIE_HPP
+# define ZOMBIE_HPP
 
-int main ()
+# include <iostream>
+# include <iomanip>
+# include <cctype>
+
+class Zombie
 {
-	std::string	name;
-	Zombie*		zombie;
+private:
+	std::string name;
 
-	std::cout << "zombie name: ";
-	getline(std::cin, name);
-    std::cout << "Creating a zombie on the heap:" << std::endl;
-	zombie = newZombie(name);
-	zombie->announce();
-    delete zombie;
-    std::cout << "Creating a zombie on the stack:" << std::endl;
-	randomChump(name);
-	return (0);
-}
+public:
+	Zombie(std::string name);
+	~Zombie();
+	void announce( void );
+};
+
+Zombie*	newZombie(std::string name);
+void	randomChump(std::string name);
+
+#endif

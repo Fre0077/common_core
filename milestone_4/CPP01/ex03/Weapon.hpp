@@ -1,29 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Weapon.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fre007 <fre007@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/02 14:43:58 by fre007            #+#    #+#             */
-/*   Updated: 2025/04/02 17:01:04 by fre007           ###   ########.fr       */
+/*   Created: 2025/04/08 14:44:12 by fre007            #+#    #+#             */
+/*   Updated: 2025/04/08 16:45:35 by fre007           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "zombie.hpp"
+#ifndef WEAPON_HPP
+#define WEAPON_HPP
 
-int main ()
+# include <iostream>
+# include <iomanip>
+# include <cctype>
+# include <string>
+
+class Weapon
 {
-	std::string	name;
-	Zombie*		zombie;
+private:
+	std::string type;
 
-	std::cout << "zombie name: ";
-	getline(std::cin, name);
-    std::cout << "Creating a zombie on the heap:" << std::endl;
-	zombie = newZombie(name);
-	zombie->announce();
-    delete zombie;
-    std::cout << "Creating a zombie on the stack:" << std::endl;
-	randomChump(name);
-	return (0);
-}
+public:
+	Weapon(std::string type);
+	~Weapon();
+	std::string getType() const;
+	void		setType(const std::string type);
+};
+
+#endif
