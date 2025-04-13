@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fre007 <fre007@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 14:43:58 by fre007            #+#    #+#             */
-/*   Updated: 2025/04/02 17:01:04 by fre007           ###   ########.fr       */
+/*   Updated: 2025/04/12 20:08:46 by fde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "zombie.hpp"
+#include "Zombie.hpp"
 
 int main ()
 {
@@ -19,6 +19,8 @@ int main ()
 
 	std::cout << "zombie name: ";
 	getline(std::cin, name);
+	if (std::cin.eof())
+		return (0);
     std::cout << "Creating a zombie on the heap:" << std::endl;
 	zombie = newZombie(name);
 	zombie->announce();

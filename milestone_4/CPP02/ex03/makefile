@@ -3,21 +3,21 @@
 #                                                         :::      ::::::::    #
 #    makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+         #
+#    By: fre007 <fre007@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/02 14:30:50 by fre007            #+#    #+#              #
-#    Updated: 2025/04/12 20:10:05 by fde-sant         ###   ########.fr        #
+#    Updated: 2025/04/09 15:43:57 by fre007           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = horde
+NAME = fixed
 
-HEADER = Zombie.hpp
+HEADERS = Fixed.hpp
 
-FILES = main.cpp Zombie.cpp zombieHorde.cpp 
+FILES = main.cpp Fixed.cpp
 CFLAGS = -std=c++98 -Wall -Werror -Wextra -g
 
-all: $(HEADER)
+all: $(HEADERS)
 	@c++ $(FILES) $(CFLAGS) -o $(NAME)
 
 clean:

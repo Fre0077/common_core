@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Account.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fre007 <fre007@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 12:04:40 by fre007            #+#    #+#             */
-/*   Updated: 2025/03/25 16:04:57 by fre007           ###   ########.fr       */
+/*   Updated: 2025/04/12 20:21:29 by fde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,11 +114,11 @@ bool	Account::makeWithdrawal(int withdrawal)
 Account::Account(int initial_deposit)
 {
 	_displayTimestamp();
+    this->_accountIndex = _nbAccounts;
+    this->_amount = initial_deposit;
 	std::cout << "index:" << _accountIndex;
 	std::cout << ";amount:" << _amount;
 	std::cout << ";created" << std::endl;
-    this->_accountIndex = _nbAccounts;
-    this->_amount = initial_deposit;
     this->_nbDeposits = 0;
     this->_nbWithdrawals = 0;
     _nbAccounts++;

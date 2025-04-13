@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fre007 <fre007@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 14:40:05 by fre007            #+#    #+#             */
-/*   Updated: 2025/04/09 11:07:47 by fre007           ###   ########.fr       */
+/*   Updated: 2025/04/12 20:37:05 by fde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int main(int ac, char* av[])
 {
 	if (ac != 2)
-		return (std::cout << "Harl is at work" << std::endl, 0);
+		return (std::cout << "[ Probably complaining about insignificant problems ]" << std::endl, 0);
 	Harl	harl;
 	
 	harl.complain(av[1]);

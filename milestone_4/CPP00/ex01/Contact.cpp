@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Contact.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fre007 <fre007@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 18:30:04 by fde-sant          #+#    #+#             */
-/*   Updated: 2025/03/25 11:26:43 by fre007           ###   ########.fr       */
+/*   Updated: 2025/04/12 20:04:17 by fde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ void	Contact::setContact()
 	std::getline(std::cin, phoneNumber);
 	std::cout << "Darkest secret: ";
 	std::getline(std::cin, darkestSecret);
-	if (firstName == "" || lastName == "" || nickname == ""
-		|| phoneNumber == "" || darkestSecret == "")
+	if ((firstName == "" || lastName == "" || nickname == ""
+		|| phoneNumber == "" || darkestSecret == "") && !std::cin.eof())
 	{
 		std::cout << "all field must be filled!" << std::endl;
 		setContact();

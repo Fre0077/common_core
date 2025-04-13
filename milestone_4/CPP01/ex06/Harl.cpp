@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Harl.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fre007 <fre007@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 10:03:16 by fre007            #+#    #+#             */
-/*   Updated: 2025/04/09 11:02:47 by fre007           ###   ########.fr       */
+/*   Updated: 2025/04/12 20:35:33 by fde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,16 +33,17 @@ void	Harl::complain(std::string check)
 	while (i < 5)
 	{
 		if (i < 4 && check == Level[i])
-		{
-			std::cout << "[" << Level[i] << "]" << std::endl;
 			break;
-		}
 		if (i == 4)
-			std::cout << "Harl had an heart attack" << std::endl;
+			std::cout << "[ Probably complaining about insignificant problems ]" << std::endl;
 		i++;
 	}
 	while (i < 4)
+	{
+		std::cout << "[" << Level[i] << "]" << std::endl;
 		(this->*level[i++])();
+		std::cout << std::endl;
+	}
 }
 
 void	Harl::debug(void)

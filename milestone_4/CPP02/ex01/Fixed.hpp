@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fre007 <fre007@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 15:11:55 by fre007            #+#    #+#             */
-/*   Updated: 2025/04/12 13:10:59 by fre007           ###   ########.fr       */
+/*   Updated: 2025/04/13 11:58:16 by fde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <fstream>
 #include <cctype>
 #include <string>
+#include <cmath>
 
 class Fixed
 {
@@ -26,6 +27,24 @@ public:
 	Fixed(float src);
 
 	Fixed& operator=(Fixed const& rhs);
+	Fixed& operator++();
+	Fixed operator++(int);
+	Fixed& operator--();
+	Fixed operator--(int);
+	float operator+(Fixed const& rhs);
+	float operator-(Fixed const& rhs);
+	float operator*(Fixed const& rhs);
+	float operator/(Fixed const& rhs);
+	int operator>(Fixed const& rhs);
+	int operator<(Fixed const& rhs);
+	int operator>=(Fixed const& rhs);
+	int operator<=(Fixed const& rhs);
+	int operator==(Fixed const& rhs);
+	int operator!=(Fixed const& rhs);
+	static Fixed& min(Fixed& a, Fixed& b);
+	static Fixed const& min(Fixed const& a, Fixed const& b);
+	static Fixed const& max(Fixed const& a, Fixed const& b);
+	static Fixed& max(Fixed& a, Fixed& b);
 	int		getRawBits(void);
 	void	setRawBits(int const raw);
 	float	toFloat( void ) const;
