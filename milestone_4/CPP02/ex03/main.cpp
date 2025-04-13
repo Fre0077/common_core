@@ -3,26 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fre007 <fre007@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 14:40:05 by fre007            #+#    #+#             */
-/*   Updated: 2025/04/13 11:57:52 by fde-sant         ###   ########.fr       */
+/*   Updated: 2025/04/13 15:43:23 by fre007           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Fixed.hpp"
+#include "Point.hpp"
+
+bool	bsp(Point const a, Point const b, Point const c, Point const point);
 
 int main()
 {
-	Fixed a;
-	Fixed const b( Fixed( 5.05f ) * Fixed( 2 ) );
-	std::cout << a << std::endl;
-	std::cout << ++a << std::endl;
-	std::cout << a << std::endl;
-	std::cout << a++ << std::endl;
-	std::cout << a << std::endl;
-	std::cout << b << std::endl;
-	std::cout << Fixed::max( a, b ) << std::endl;
-	return 0;
+	{
+		const Point a;
+		const Point b(10, 0);
+		const Point c(0, 10);
+		const Point point(1, 1);
+
+		if (bsp(a, b, c, point) == true)
+			std::cout << "TRUE" << std::endl;
+		else
+			std::cout << "FALSE" << std::endl;
+	}
+	{
+		Point a(-1.5, 3);
+		Point b(2.5, 2.5);
+		Point c(-1, -2);
+		Point point(2.45, 2.4);
+		if (bsp(a, b, c, point) == true)
+			std::cout << "TRUE" << std::endl;
+		else
+			std::cout << "FALSE" << std::endl;
+	}
+	return (0);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fre007 <fre007@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 15:19:31 by fre007            #+#    #+#             */
-/*   Updated: 2025/04/13 11:58:30 by fde-sant         ###   ########.fr       */
+/*   Updated: 2025/04/13 15:41:02 by fre007           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,31 +16,31 @@
 //==============================================================================
 Fixed::Fixed() : value(0)
 {
-	std::cout << "Default constructor called" << std::endl;
+	//std::cout << "Default constructor called" << std::endl;
 }
 
 Fixed::Fixed(Fixed const& src)
 {
-	std::cout << "Copy constructor called" << std::endl;
+	//std::cout << "Copy constructor called" << std::endl;
 	this->value = src.value;
 }
 
 Fixed::Fixed(int src)
 {
-	std::cout << "Int constructor called" << std::endl;
+	//std::cout << "Int constructor called" << std::endl;
 	this->value = src << fractionalBit;
 }
 
 Fixed::Fixed(float src)
 {
-	std::cout << "Float constructor called" << std::endl;
+	//std::cout << "Float constructor called" << std::endl;
 	src = roundf(src * (1 << fractionalBit));
 	this->value = (int)src;
 }
 
 Fixed::~Fixed()
 {
-	std::cout << "Destructor called" << std::endl;
+	//std::cout << "Destructor called" << std::endl;
 }
 //==============================================================================
 //OPERATOR======================================================================

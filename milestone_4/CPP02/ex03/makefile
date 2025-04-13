@@ -6,15 +6,15 @@
 #    By: fre007 <fre007@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/02 14:30:50 by fre007            #+#    #+#              #
-#    Updated: 2025/04/09 15:43:57 by fre007           ###   ########.fr        #
+#    Updated: 2025/04/13 15:34:31 by fre007           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = fixed
+NAME = bsp
 
-HEADERS = Fixed.hpp
+HEADERS = Fixed.hpp Point.hpp
 
-FILES = main.cpp Fixed.cpp
+FILES = main.cpp Fixed.cpp Point.cpp bsp.cpp
 CFLAGS = -std=c++98 -Wall -Werror -Wextra -g
 
 all: $(HEADERS)

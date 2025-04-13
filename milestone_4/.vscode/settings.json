@@ -50,6 +50,26 @@
 		"typeinfo": "cpp",
 		"fstream": "cpp",
 		"optional": "cpp",
-		"ranges": "cpp"
+		"ranges": "cpp",
+		"*.ipp": "cpp",
+		"csignal": "cpp",
+		"cstring": "cpp",
+		"strstream": "cpp",
+		"bitset": "cpp",
+		"chrono": "cpp",
+		"complex": "cpp",
+		"condition_variable": "cpp",
+		"list": "cpp",
+		"map": "cpp",
+		"set": "cpp",
+		"ratio": "cpp",
+		"mutex": "cpp",
+		"semaphore": "cpp",
+		"stop_token": "cpp",
+		"thread": "cpp",
+		"cfenv": "cpp",
+		"typeindex": "cpp",
+		"valarray": "cpp",
+		"variant": "cpp"
 	}
 }

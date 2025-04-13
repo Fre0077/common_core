@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fre007 <fre007@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 15:11:55 by fre007            #+#    #+#             */
-/*   Updated: 2025/04/13 11:58:16 by fde-sant         ###   ########.fr       */
+/*   Updated: 2025/04/13 14:46:46 by fre007           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ class Fixed
 {
 public:
 	Fixed();
-	~Fixed();
 	Fixed(Fixed const& src);
 	Fixed(int src);
 	Fixed(float src);
+	~Fixed();
 
 	Fixed& operator=(Fixed const& rhs);
 	Fixed& operator++();
