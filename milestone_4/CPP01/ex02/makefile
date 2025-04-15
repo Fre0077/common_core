@@ -3,26 +3,37 @@
 #                                                         :::      ::::::::    #
 #    makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: fre007 <fre007@student.42.fr>              +#+  +:+       +#+         #
+#    By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/02 14:30:50 by fre007            #+#    #+#              #
-#    Updated: 2025/04/08 14:00:08 by fre007           ###   ########.fr        #
+#    Updated: 2025/04/14 10:33:17 by fde-sant         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = ptr_ref
+NAME    = ptr_ref
 
-FILES = main.cpp 
-CFLAGS = -std=c++98 -Wall -Werror -Wextra -g
+SRCS    = main.cpp
+OBJS    = $(SRCS:.cpp=.o)
+CXX     = c++
+CFLAGS  = -std=c++98 -Wall -Werror -Wextra -g
 
-all:
-	@c++ $(FILES) $(CFLAGS) -o $(NAME)
+all: $(NAME)
+
+$(NAME): $(OBJS)
+	$(CXX) $(CFLAGS) $(OBJS) -o $(NAME)
+
+%.o: %.cpp
+	$(CXX) $(CFLAGS) -c $< -o $@
 
 clean:
+	rm -f $(OBJS)
 
-fclean:
-	rm $(NAME)
+fclean: clean
+	rm -f $(NAME)
 
 re: fclean all
+
+.PHONY: all clean fclean re
+
 
 .SILENT:

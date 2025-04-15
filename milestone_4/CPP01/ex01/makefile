@@ -6,25 +6,34 @@
 #    By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/02 14:30:50 by fre007            #+#    #+#              #
-#    Updated: 2025/04/12 20:10:05 by fde-sant         ###   ########.fr        #
+#    Updated: 2025/04/14 10:32:51 by fde-sant         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = horde
+NAME    = horde
 
-HEADER = Zombie.hpp
+SRCS    = main.cpp Zombie.cpp zombieHorde.cpp
+OBJS    = $(SRCS:.cpp=.o)
+CXX     = c++
+CFLAGS  = -std=c++98 -Wall -Werror -Wextra -g
 
-FILES = main.cpp Zombie.cpp zombieHorde.cpp 
-CFLAGS = -std=c++98 -Wall -Werror -Wextra -g
+all: $(NAME)
 
-all: $(HEADER)
-	@c++ $(FILES) $(CFLAGS) -o $(NAME)
+$(NAME): $(OBJS)
+	$(CXX) $(CFLAGS) $(OBJS) -o $(NAME)
+
+%.o: %.cpp Zombie.hpp
+	$(CXX) $(CFLAGS) -c $< -o $@
 
 clean:
+	rm -f $(OBJS)
 
-fclean:
-	rm $(NAME)
+fclean: clean
+	rm -f $(NAME)
 
 re: fclean all
+
+.PHONY: all clean fclean re
+
 
 .SILENT:

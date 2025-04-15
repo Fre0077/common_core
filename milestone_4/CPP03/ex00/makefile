@@ -6,13 +6,13 @@
 #    By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/02 14:30:50 by fre007            #+#    #+#              #
-#    Updated: 2025/04/14 10:35:21 by fde-sant         ###   ########.fr        #
+#    Updated: 2025/04/14 10:36:27 by fde-sant         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME    = fixed
+NAME    = ClapTrap
 
-SRCS    = main.cpp Fixed.cpp
+SRCS    = main.cpp ClapTrap.cpp
 OBJS    = $(SRCS:.cpp=.o)
 CXX     = c++
 CFLAGS  = -std=c++98 -Wall -Werror -Wextra -g
@@ -34,6 +34,5 @@ fclean: clean
 re: fclean all
 
 .PHONY: all clean fclean re
-
 
 .SILENT:

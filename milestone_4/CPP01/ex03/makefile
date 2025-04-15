@@ -3,28 +3,37 @@
 #                                                         :::      ::::::::    #
 #    makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: fre007 <fre007@student.42.fr>              +#+  +:+       +#+         #
+#    By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/02 14:30:50 by fre007            #+#    #+#              #
-#    Updated: 2025/04/08 16:25:24 by fre007           ###   ########.fr        #
+#    Updated: 2025/04/14 10:33:52 by fde-sant         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = fight
+NAME    = fight
 
-HEADERS = HumanA.hpp HumanB.hpp Weapon.hpp
+SRCS    = main.cpp HumanA.cpp HumanB.cpp Weapon.cpp
+OBJS    = $(SRCS:.cpp=.o)
+CXX     = c++
+CFLAGS  = -std=c++98 -Wall -Werror -Wextra -g
 
-FILES = main.cpp HumanA.cpp HumanB.cpp Weapon.cpp
-CFLAGS = -std=c++98 -Wall -Werror -Wextra -g
+all: $(NAME)
 
-all: $(HEADERS)
-	@c++ $(FILES) $(CFLAGS) -o $(NAME)
+$(NAME): $(OBJS)
+	$(CXX) $(CFLAGS) $(OBJS) -o $(NAME)
+
+%.o: %.cpp HumanA.hpp HumanB.hpp Weapon.hpp
+	$(CXX) $(CFLAGS) -c $< -o $@
 
 clean:
+	rm -f $(OBJS)
 
-fclean:
-	rm $(NAME)
+fclean: clean
+	rm -f $(NAME)
 
 re: fclean all
+
+.PHONY: all clean fclean re
+
 
 .SILENT:

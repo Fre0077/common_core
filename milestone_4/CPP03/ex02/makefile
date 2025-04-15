@@ -6,34 +6,25 @@
 #    By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/02 14:30:50 by fre007            #+#    #+#              #
-#    Updated: 2025/04/14 10:35:21 by fde-sant         ###   ########.fr        #
+#    Updated: 2025/04/15 09:34:48 by fde-sant         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME    = fixed
+NAME = FragTrap
 
-SRCS    = main.cpp Fixed.cpp
-OBJS    = $(SRCS:.cpp=.o)
-CXX     = c++
-CFLAGS  = -std=c++98 -Wall -Werror -Wextra -g
+HEADERS = ClapTrap.hpp ScavTrap.hpp FragTrap.hpp
 
-all: $(NAME)
+FILES = main.cpp ClapTrap.cpp ScavTrap.cpp FragTrap.cpp
+CFLAGS = -std=c++98 -Wall -Werror -Wextra -g
 
-$(NAME): $(OBJS)
-	$(CXX) $(CFLAGS) $(OBJS) -o $(NAME)
-
-%.o: %.cpp $(HEADERS)
-	$(CXX) $(CFLAGS) -c $< -o $@
+all: $(HEADERS)
+	@c++ $(FILES) $(CFLAGS) -o $(NAME)
 
 clean:
-	rm -f $(OBJS)
 
-fclean: clean
-	rm -f $(NAME)
+fclean:
+	rm $(NAME)
 
 re: fclean all
-
-.PHONY: all clean fclean re
-
 
 .SILENT:
