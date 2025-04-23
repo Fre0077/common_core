@@ -1,50 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Form.cpp                                           :+:      :+:    :+:   */
+/*   PresidentialPardonForm.cpp                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: francesco <francesco@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/20 09:54:08 by francesco         #+#    #+#             */
-/*   Updated: 2025/04/23 12:38:05 by francesco        ###   ########.fr       */
+/*   Created: 2025/04/23 11:19:36 by francesco         #+#    #+#             */
+/*   Updated: 2025/04/23 12:07:33 by francesco        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Form.hpp"
+#include "PresidentialPardonForm.hpp"
 #include "Bureaucrat.hpp"
 
 //==============================================================================
 //COSTRUCTOR/ESTRUCTOR==========================================================
 //==============================================================================
-Form::Form() : name("a generic Form"), signGrade(1), executeGrade(1)
+PresidentialPardonForm::PresidentialPardonForm() : AForm("a generic PresidentialPardonForm", 25, 5), target("a generic target")
 {
-	std::cout << "Form constructor called" << std::endl;
-	this->sign = false;
+	std::cout << "PresidentialPardonForm constructor called" << std::endl;
 }
 
-Form::Form(std::string n, int signGrade, int executeGrade) : name(n), signGrade(signGrade), executeGrade(executeGrade)
+PresidentialPardonForm::PresidentialPardonForm(std::string t) : AForm("a generic PresidentialPardonForm", 25, 5), target(t)
 {
-	std::cout << "Form constructor called" << std::endl;
-	if (signGrade < 1 || executeGrade < 1)
-		throw Form::GradeTooHighException();
-	else if (signGrade > 150 || executeGrade > 150)
-		throw Form::GradeTooLowException();
-	this->sign = false;
+	std::cout << "PresidentialPardonForm constructor called" << std::endl;
+	if (this->getSignGrade() < 1 || this->getExecuteGrade() < 1)
+		throw PresidentialPardonForm::GradeTooHighException();
+	else if (this->getSignGrade() > 150 || this->getExecuteGrade() > 150)
+		throw PresidentialPardonForm::GradeTooLowException();
 }
 
-Form::Form(Form const& copy) : name(copy.name), sign(copy.sign), signGrade(copy.signGrade), executeGrade(copy.executeGrade)
+PresidentialPardonForm::PresidentialPardonForm(PresidentialPardonForm const& copy) : AForm(copy)
 {
-	std::cout << "Form Copy constructor called" << std::endl;
+	std::cout << "PresidentialPardonForm Copy constructor called" << std::endl;
 }
 
-Form::~Form()
+PresidentialPardonForm::~PresidentialPardonForm()
 {
-	std::cout << "Form Destructor called" << std::endl;
+	std::cout << "PresidentialPardonForm Destructor called" << std::endl;
 }
 //==============================================================================
 //OPERATOR======================================================================
 //==============================================================================
-Form&	Form::operator=(Form const& copy)
+PresidentialPardonForm&	PresidentialPardonForm::operator=(PresidentialPardonForm const& copy)
 {
 	//std::cout << "Copy assignment operator called" << std::endl;
 	if (this != &copy)
@@ -52,7 +50,7 @@ Form&	Form::operator=(Form const& copy)
 	return *this;
 }
 
-std::ostream& operator<<(std::ostream& out, Form const& rhs)
+std::ostream& operator<<(std::ostream& out, PresidentialPardonForm const& rhs)
 {
 	out << rhs.getName() << ", Form execute grade " << rhs.getExecuteGrade() << ", Form sign grade " << rhs.getSignGrade();
 	if (rhs.getSign())
@@ -64,38 +62,11 @@ std::ostream& operator<<(std::ostream& out, Form const& rhs)
 //==============================================================================
 //METHOD========================================================================
 //==============================================================================
-std::string const	Form::getName() const
+void	PresidentialPardonForm::execute(Bureaucrat const &executor) const
 {
-	return (this->name);
-}
-
-int	Form::getSignGrade() const
-{
-	return (this->signGrade);
-}
-
-int	Form::getExecuteGrade() const
-{
-	return (this->executeGrade);
-}
-
-bool	Form::getSign() const
-{
-	return (this->sign);
-}
-
-const char *Form::GradeTooHighException::what() const throw()
-{
-	return ("Grade is too high");
-}
-
-const char *Form::GradeTooLowException::what() const throw()
-{
-	return ("Grade is too low");
-}
-void	Form::beSigned(Bureaucrat const &b)
-{
-	if (b.getGrade() >= this->getSignGrade())
-		throw Form::GradeTooLowException();
-	this->sign = true;
+	if (executor.getGrade() > this->getExecuteGrade())
+		throw AForm::GradeTooLowException();
+	if (!this->getSign())
+		throw AForm::NotSigned();
+	std::cout << target << " has been pardoned by Zafod Beeblebrox" << std::endl;
 }
