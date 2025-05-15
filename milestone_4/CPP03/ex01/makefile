@@ -6,25 +6,35 @@
 #    By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/02 14:30:50 by fre007            #+#    #+#              #
-#    Updated: 2025/04/15 08:58:05 by fde-sant         ###   ########.fr        #
+#    Updated: 2025/04/16 07:54:10 by fde-sant         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = ScavTrap
+NAME    = ScavTrap
 
 HEADERS = ClapTrap.hpp ScavTrap.hpp
 
-FILES = main.cpp ClapTrap.cpp ScavTrap.cpp
-CFLAGS = -std=c++98 -Wall -Werror -Wextra -g
+SRCS    = main.cpp ClapTrap.cpp ScavTrap.cpp
+OBJS    = $(SRCS:.cpp=.o)
+CXX     = c++
+CFLAGS  = -std=c++98 -Wall -Werror -Wextra -g
 
-all: $(HEADERS)
-	@c++ $(FILES) $(CFLAGS) -o $(NAME)
+all: $(NAME)
+
+$(NAME): $(OBJS)
+	$(CXX) $(CFLAGS) $(OBJS) -o $(NAME)
+
+%.o: %.cpp $(HEADERS)
+	$(CXX) $(CFLAGS) -c $< -o $@
 
 clean:
+	rm -f $(OBJS)
 
-fclean:
-	rm $(NAME)
+fclean: clean
+	rm -f $(NAME)
 
 re: fclean all
+
+.PHONY: all clean fclean re
 
 .SILENT:

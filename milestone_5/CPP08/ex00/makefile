@@ -5,21 +5,21 @@
 #                                                     +:+ +:+         +:+      #
 #    By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/04/02 14:30:50 by fre007            #+#    #+#              #
-#    Updated: 2025/04/16 07:55:03 by fde-sant         ###   ########.fr        #
+#    Created: 2025/05/02 14:38:09 by fre007            #+#    #+#              #
+#    Updated: 2025/05/15 12:24:03 by fde-sant         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME    = DiamondTrap
+NAME = easyfind
 
-HEADERS = ClapTrap.hpp ScavTrap.hpp FragTrap.hpp DiamondTrap.hpp
+HEADERS = easyfind.hpp
 
-SRCS    = main.cpp ClapTrap.cpp ScavTrap.cpp FragTrap.cpp DiamondTrap.cpp
-OBJS    = $(SRCS:.cpp=.o)
-CXX     = c++
-CFLAGS  = -std=c++98 -Wall -Werror -Wextra -g
+SRCS = main.cpp
+OBJS = $(SRCS:.cpp=.o)
+CXX = c++
+CFLAGS = -std=c++98 -Wall -Werror -Wextra -g
 
-all: $(NAME)
+all: $(NAME) $(HEADERS)
 
 $(NAME): $(OBJS)
 	$(CXX) $(CFLAGS) $(OBJS) -o $(NAME)
@@ -36,5 +36,6 @@ fclean: clean
 re: fclean all
 
 .PHONY: all clean fclean re
+
 
 .SILENT:
