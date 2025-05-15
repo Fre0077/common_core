@@ -6,13 +6,13 @@
 #    By: fre007 <fre007@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/02 14:38:09 by fre007            #+#    #+#              #
-#    Updated: 2025/05/10 09:48:47 by fre007           ###   ########.fr        #
+#    Updated: 2025/05/10 10:21:07 by fre007           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = Iter
+NAME = array
 
-HEADERS = Iter.hpp
+HEADERS = Array.hpp
 
 SRCS = main.cpp
 OBJS = $(SRCS:.cpp=.o)
