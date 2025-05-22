@@ -6,7 +6,7 @@
 /*   By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 14:12:52 by fde-sant          #+#    #+#             */
-/*   Updated: 2025/05/15 14:48:33 by fde-sant         ###   ########.fr       */
+/*   Updated: 2025/05/22 07:49:58 by fde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,14 @@ Span& Span::operator=(Span const& copy)
 unsigned int Span::shortestSpan()
 {
 	if (v.size() < 2)
-	throw Span::NotEnoughNumbers();
+		throw Span::NotEnoughNumbers();
 	unsigned int i = 0, j = 1;
 	unsigned int size = v.size();
 	unsigned int currentSpan = std::abs(v[j] - v[i]);
 	while (j < size)
 	{
 		if (static_cast<unsigned int>(std::abs(v[j] - v[i])) < currentSpan)
-		currentSpan = v[j] - v[i];
+			currentSpan = v[j] - v[i];
 		i++;
 		j++;
 	}
@@ -53,14 +53,14 @@ unsigned int Span::shortestSpan()
 unsigned int Span::longestSpan()
 {
 	if (v.size() < 2)
-	throw Span::NotEnoughNumbers();
+		throw Span::NotEnoughNumbers();
 	return v[v.size() - 1] - v[0];
 }
 
 void Span::addNumber(int n)
 {
 	if (v.size() >= N)
-	throw Span::AlreadyFull();
+		throw Span::AlreadyFull();
 	v.insert(std::lower_bound(v.begin(), v.end(), n), n);
 }
 
@@ -69,7 +69,7 @@ void Span::addRange(int first, int last)
 	if (first >= last)
 		return;
 	if (v.size() >= N)
-	throw Span::AlreadyFull();
+		throw Span::AlreadyFull();
 	while (first <= last)
 	{
 		v.insert(std::lower_bound(v.begin(), v.end(), first), first);
