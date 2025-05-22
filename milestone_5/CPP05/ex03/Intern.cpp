@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Intern.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: francesco <francesco@student.42.fr>        +#+  +:+       +#+        */
+/*   By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 12:09:54 by francesco         #+#    #+#             */
-/*   Updated: 2025/04/23 12:11:42 by francesco        ###   ########.fr       */
+/*   Updated: 2025/05/22 07:29:24 by fde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,23 +58,23 @@ const char* Intern::FormNotFoundException::what() const throw()
 
 AForm* Intern::makeForm(std::string const &name, std::string const &target)
 {
+    struct FormPair {
+        const char* formName;
+        AForm* (Intern::*createFunc)(std::string const &target);
+    };
 
-	std::map<std::string, AForm* (Intern::*)(std::string const &target)> form_map;
-	form_map["shrubbery creation"] = &Intern::createShrubberyCreationForm;
-    form_map["robotomy request"] = &Intern::createRobotomyRequestForm;
-    form_map["presidential pardon"] = &Intern::createPresidentialPardonForm;
-	try
-	{
-		if (form_map.find(name) != form_map.end())
-		{
-			std::cout << "Intern creates " << name << " AForm" << std::endl;
-			return (this->*form_map[name])(target);
-		}
-		throw FormNotFoundException();
-	}
-	catch (std::exception &e)
-	{
-		std::cerr << e.what() << name << std::endl;
-		return NULL;
-	}
+    FormPair forms[] = {
+        {"shrubbery creation", &Intern::createShrubberyCreationForm},
+        {"robotomy request", &Intern::createRobotomyRequestForm},
+        {"presidential pardon", &Intern::createPresidentialPardonForm}
+    };
+
+    for (size_t i = 0; i < sizeof(forms)/sizeof(forms[0]); ++i) {
+        if (name == forms[i].formName) {
+            std::cout << "Intern creates " << name << " AForm" << std::endl;
+            return (this->*forms[i].createFunc)(target);
+        }
+    }
+    std::cerr << FormNotFoundException().what() << name << std::endl;
+    return NULL;
 }
