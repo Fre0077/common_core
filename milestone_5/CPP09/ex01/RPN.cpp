@@ -6,7 +6,7 @@
 /*   By: fre007 <fre007@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 11:55:31 by fre007            #+#    #+#             */
-/*   Updated: 2025/05/26 12:19:43 by fre007           ###   ########.fr       */
+/*   Updated: 2025/05/30 18:57:42 by fre007           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,19 @@
 //==============================================================================
 RPN::RPN(std::string input)
 {
-	
+	std::vector<std::string>	divide = split(input, ' ');
+	for (size_t i = divide.size(); i > 0; i--)
+	{
+		if (isNum(divide[i - 1]) || isSign(divide[i - 1]))
+			this->all.push(divide[i - 1]);
+		else
+			throw wrongArg();
+		if (this->all.size() > 10)
+			throw tooManyArg();
+	}
 }
 
-RPN::RPN(RPN const& copy) : number(copy.number), sign(copy.sign) {}
+RPN::RPN(RPN const& copy) : number(copy.number), all(copy.all) {}
 
 RPN::~RPN() {}
 //==============================================================================
@@ -30,12 +39,30 @@ RPN& RPN::operator=(RPN const& copy)
 	if (this == &copy)
 	return *this;
 	number = copy.number;
-	sign = copy.sign;
+	all = copy.all;
 	return *this;
 }
 //==============================================================================
 //METHOD========================================================================
 //==============================================================================
+int	isSign(const std::string& check)
+{
+	if (check == "+" || check == "-" || check == "*" || check == "/")
+		return 1;
+	return 0;
+}
+
+int isNum(const std::string& str)
+{
+    if (str.empty())
+        return 0;
+    for (size_t i = 0; i < str.length(); ++i) {
+        if (!std::isdigit(str[i]))
+            return 0;
+    }
+    return 1;
+}
+
 std::string trim(const std::string& str)
 {
 	size_t start = 0;
@@ -57,97 +84,73 @@ std::vector<std::string> split(const std::string& s, char delimiter)
 	return tokens;
 }
 
-std::vector<int> splitInt(const std::string& s, char delimiter)
+void	RPN::op()
 {
-	std::vector<int> tokens;
-	std::string token;
-	std::istringstream tokenStream(s);
-	while (std::getline(tokenStream, token, delimiter))
-		tokens.push_back(atoi(token.c_str()));
-	return tokens;
+	if (this->all.top() == "-")
+	{
+		int num;
+		num = this->number.top();
+		this->number.pop();
+		num = this->number.top() - num;
+		this->number.pop();
+		this->number.push(num);
+	}
+	else if (this->all.top() == "+")
+	{
+		int num;
+		num = this->number.top();
+		this->number.pop();
+		num = this->number.top() + num;
+		this->number.pop();
+		this->number.push(num);
+	}
+	else if (this->all.top() == "*")
+	{
+		int num;
+		num = this->number.top();
+		this->number.pop();
+		num = this->number.top() * num;
+		this->number.pop();
+		this->number.push(num);
+	}
+	else if (this->all.top() == "/")
+	{
+		int num;
+		num = this->number.top();
+		this->number.pop();
+		num = this->number.top() / num;
+		this->number.pop();
+		this->number.push(num);
+	}
+	this->all.pop();
 }
 
-bool isLeapYear(int year)
+void	RPN::calculate()
 {
-	return (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0));
+	size_t dim = this->all.size();
+	for (size_t i = 0; i < dim; i++)
+	{
+		if (isNum(this->all.top()))
+		{
+			std::stringstream ss(this->all.top());
+			int num;
+			ss >> num;
+			this->number.push(num);
+			this->all.pop();
+		}
+		else if (isSign(this->all.top()) && this->number.size() >= 2)
+			op ();
+		else
+			throw wrongArg();
+	}
+	if (this->number.size() != 1)
+		throw wrongArg();
+	else
+		this->final = this->number.top();
+	this->number.pop();
 }
 
-int getDaysInMonth(int year, int month)
+int	RPN::getNum()
 {
-	static const int days[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-	if (month == 2 && isLeapYear(year))
-		return 29;
-	return days[month - 1];
-}
-
-int convertData(std::string data)
-{
-	std::vector<int>	value;
-	int							ret = 0;
-	value = splitInt(data, '-');
-	if (value[0] < 2009 || value[0] > 2022 || value[1] < 1 || value[1] > 12 || value[2] < 1 || value[2] > getDaysInMonth(value[0], value[1]))
-		return -1;
-	ret += value[0] * 365;
-	ret += (value[0] / 4);
-	for(int i = 1; i < value[1]; i++)
-		ret += getDaysInMonth(value[0], i);
-	ret += value[2];
-	return ret;
-}
-
-bool checkInput(std::string input)
-{
-	std::string	date;
-	std::string	quantity;
-	size_t		i = 0;
-	date = trim(input.substr(0, input.find('|')));
-	quantity = trim(input.substr(input.find('|') + 1));
-	for(;i < 4; i++)
-		if (!std::isdigit(date[i]))
-			return true;
-	if (date[i++] != '-')
-		return true;
-	for(;i < 7; i++)
-		if (!std::isdigit(date[i]))
-			return true;
-	if (date[i++] != '-')
-		return true;
-	for(;i < 10; i++)
-		if (!std::isdigit(date[i]))
-			return true;
-	i = 0;
-	if (!std::isdigit(quantity[i]))
-		return true;
-	for(;std::isdigit(quantity[i]); i++)
-		;
-	if (quantity[i++] != '.')
-		return true;
-	if (!std::isdigit(quantity[i]))
-		return true;
-	for(;i < quantity.length(); i++)
-		if (!std::isdigit(quantity[i]))
-			return true;
-	return false;
-}
-
-double RPN::searchValue(std::string input)
-{
-	std::vector<std::string>	value;
-	int							date;
-	double						quantity;
-
-	if(checkInput(input))
-		return (std::cout << RED "Error: bad input => " << input << "" END << std::endl, -1);
-	value = split(input, '|');
-	date = convertData(trim(value[0]));
-	if (date == -1)
-		return (std::cout << RED "Error: bad input => " << input << "" END << std::endl, -1);
-	quantity = std::atof(trim(value[1]).c_str());
-	if (quantity < 0)
-		return (std::cout << RED "Error: not a positive number." END << std::endl, -1);
-	else if (quantity > 1000)
-		return (std::cout << RED "Error: too large a number." END << std::endl, -1);
-	for(; this->data.find(date) == this->data.end(); date--)
-		;
-	return (quantity * this->data[date]);
+	return this->final;
 }
