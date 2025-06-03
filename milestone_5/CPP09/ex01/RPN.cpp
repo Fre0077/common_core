@@ -6,7 +6,7 @@
 /*   By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 11:55:31 by fre007            #+#    #+#             */
-/*   Updated: 2025/05/31 08:39:27 by fde-sant         ###   ########.fr       */
+/*   Updated: 2025/06/03 20:08:39 by fde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,18 @@
 //==============================================================================
 RPN::RPN(std::string input)
 {
-	const int MAX_TOKENS = 10;
-	std::string tokens[MAX_TOKENS];
-	int count = split(input, ' ', tokens, MAX_TOKENS);
+	int nn = 0;
+	std::string tokens[20];
+	int count = split(input, ' ', tokens, &nn);
 
+	std::cout << nn << std::endl;
 	for (int i = count - 1; i >= 0; --i)
 	{
 		if (isNum(tokens[i]) || isSign(tokens[i]))
 			this->all.push(tokens[i]);
 		else
 			throw wrongArg();
-		if ((int)this->all.size() > MAX_TOKENS)
+		if (nn >= 10)
 			throw tooManyArg();
 	}
 }
@@ -76,13 +77,15 @@ std::string trim(const std::string& str)
 	return str.substr(start, end - start);
 }
 
-int split(const std::string& s, char delimiter, std::string tokens[], int maxTokens)
+int split(const std::string& s, char delimiter, std::string tokens[], int *nn)
 {
 	std::istringstream tokenStream(s);
 	std::string token;
 	int count = 0;
-	while (std::getline(tokenStream, token, delimiter) && count < maxTokens)
+	while (std::getline(tokenStream, token, delimiter) && *nn <= 10)
 	{
+		if (isNum(token))
+			*nn += 1;
 		tokens[count++] = token;
 	}
 	return count;

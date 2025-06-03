@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   RPN.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fre007 <fre007@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 11:55:36 by fre007            #+#    #+#             */
-/*   Updated: 2025/05/31 10:55:00 by fre007           ###   ########.fr       */
+/*   Updated: 2025/06/03 20:04:42 by fde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 int	isSign(const std::string& check);
 int isNum(const std::string& str);
 std::string trim(const std::string& str);
-int split(const std::string& s, char delimiter, std::string tokens[], int maxTokens);
+int split(const std::string& s, char delimiter, std::string tokens[], int *nn);
 
 class RPN
 {
