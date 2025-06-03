@@ -3,27 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   RPN.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fre007 <fre007@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 11:55:31 by fre007            #+#    #+#             */
-/*   Updated: 2025/05/30 18:57:42 by fre007           ###   ########.fr       */
+/*   Updated: 2025/05/31 08:39:27 by fde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RPN.hpp"
 //==============================================================================
-//COSTRUCTOR/DESTRUCTOR=========================================================
+//COSTRUCTOR/ESTRUCTOR==========================================================
 //==============================================================================
 RPN::RPN(std::string input)
 {
-	std::vector<std::string>	divide = split(input, ' ');
-	for (size_t i = divide.size(); i > 0; i--)
+	const int MAX_TOKENS = 10;
+	std::string tokens[MAX_TOKENS];
+	int count = split(input, ' ', tokens, MAX_TOKENS);
+
+	for (int i = count - 1; i >= 0; --i)
 	{
-		if (isNum(divide[i - 1]) || isSign(divide[i - 1]))
-			this->all.push(divide[i - 1]);
+		if (isNum(tokens[i]) || isSign(tokens[i]))
+			this->all.push(tokens[i]);
 		else
 			throw wrongArg();
-		if (this->all.size() > 10)
+		if ((int)this->all.size() > MAX_TOKENS)
 			throw tooManyArg();
 	}
 }
@@ -37,7 +40,7 @@ RPN::~RPN() {}
 RPN& RPN::operator=(RPN const& copy)
 {
 	if (this == &copy)
-	return *this;
+		return *this;
 	number = copy.number;
 	all = copy.all;
 	return *this;
@@ -47,20 +50,19 @@ RPN& RPN::operator=(RPN const& copy)
 //==============================================================================
 int	isSign(const std::string& check)
 {
-	if (check == "+" || check == "-" || check == "*" || check == "/")
-		return 1;
-	return 0;
+	return (check == "+" || check == "-" || check == "*" || check == "/");
 }
 
 int isNum(const std::string& str)
 {
-    if (str.empty())
-        return 0;
-    for (size_t i = 0; i < str.length(); ++i) {
-        if (!std::isdigit(str[i]))
-            return 0;
-    }
-    return 1;
+	if (str.empty())
+		return 0;
+	for (size_t i = 0; i < str.length(); ++i)
+	{
+		if (!std::isdigit(str[i]))
+			return 0;
+	}
+	return 1;
 }
 
 std::string trim(const std::string& str)
@@ -74,54 +76,42 @@ std::string trim(const std::string& str)
 	return str.substr(start, end - start);
 }
 
-std::vector<std::string> split(const std::string& s, char delimiter)
+int split(const std::string& s, char delimiter, std::string tokens[], int maxTokens)
 {
-	std::vector<std::string> tokens;
-	std::string token;
 	std::istringstream tokenStream(s);
-	while (std::getline(tokenStream, token, delimiter))
-		tokens.push_back(token);
-	return tokens;
+	std::string token;
+	int count = 0;
+	while (std::getline(tokenStream, token, delimiter) && count < maxTokens)
+	{
+		tokens[count++] = token;
+	}
+	return count;
 }
 
 void	RPN::op()
 {
+	int num = this->number.top();
+	this->number.pop();
+
+	if (this->number.empty())
+		throw wrongArg();
+
+	int left = this->number.top();
+	this->number.pop();
+
 	if (this->all.top() == "-")
-	{
-		int num;
-		num = this->number.top();
-		this->number.pop();
-		num = this->number.top() - num;
-		this->number.pop();
-		this->number.push(num);
-	}
+		this->number.push(left - num);
 	else if (this->all.top() == "+")
-	{
-		int num;
-		num = this->number.top();
-		this->number.pop();
-		num = this->number.top() + num;
-		this->number.pop();
-		this->number.push(num);
-	}
+		this->number.push(left + num);
 	else if (this->all.top() == "*")
-	{
-		int num;
-		num = this->number.top();
-		this->number.pop();
-		num = this->number.top() * num;
-		this->number.pop();
-		this->number.push(num);
-	}
+		this->number.push(left * num);
 	else if (this->all.top() == "/")
 	{
-		int num;
-		num = this->number.top();
-		this->number.pop();
-		num = this->number.top() / num;
-		this->number.pop();
-		this->number.push(num);
+		if (num == 0)
+			throw wrongArg();
+		this->number.push(left / num);
 	}
+
 	this->all.pop();
 }
 
@@ -139,7 +129,7 @@ void	RPN::calculate()
 			this->all.pop();
 		}
 		else if (isSign(this->all.top()) && this->number.size() >= 2)
-			op ();
+			op();
 		else
 			throw wrongArg();
 	}

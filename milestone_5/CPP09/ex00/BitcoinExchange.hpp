@@ -16,22 +16,20 @@
 # define RED "\033[0;31m"
 # define END "\033[0m"
 
-# include <algorithm>
 # include <iostream>
-# include <cstdlib>
-# include <climits>
-# include <iomanip>
 # include <fstream>
 # include <sstream>
-# include <cctype>
-# include <vector>
-# include <stack>
-# include <set>
+# include <cstdlib>
 # include <map>
+# include <string>
+# include <cctype>
+# include <iomanip>
 
 std::string trim(const std::string& str);
-std::vector<std::string> split(const std::string& s, char delimiter);
-int convertData(std::string data);
+bool split(const std::string& s, char delimiter, std::string parts[2]);
+int convertData(const std::string& data);
+bool checkInput(const std::string& input);
+bool parseDate(const std::string& str, int& y, int& m, int& d);
 
 class BitcoinExchange
 {
@@ -39,11 +37,11 @@ private:
 	std::map<int, double>	data;
 public:
 	BitcoinExchange();
-	BitcoinExchange(BitcoinExchange const &copy);
+	BitcoinExchange(const BitcoinExchange &copy);
 	~BitcoinExchange();
-	BitcoinExchange& operator=(BitcoinExchange const& copy);
+	BitcoinExchange& operator=(const BitcoinExchange& copy);
 
-	double		searchValue(std::string input);
+	double	searchValue(std::string input);
 };
 
 #endif

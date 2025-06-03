@@ -6,7 +6,7 @@
 #    By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/02 14:38:09 by fre007            #+#    #+#              #
-#    Updated: 2025/05/15 12:24:03 by fde-sant         ###   ########.fr        #
+#    Updated: 2025/06/03 09:13:56 by fde-sant         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,4 +38,4 @@ re: fclean all
 .PHONY: all clean fclean re
 
 
-.SILENT:
+#.SILENT:

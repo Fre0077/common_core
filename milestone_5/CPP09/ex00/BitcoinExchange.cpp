@@ -3,47 +3,54 @@
 /*                                                        :::      ::::::::   */
 /*   BitcoinExchange.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fre007 <fre007@student.42.fr>              +#+  +:+       +#+        */
+/*   By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 21:22:22 by fre007            #+#    #+#             */
-/*   Updated: 2025/05/26 12:16:07 by fre007           ###   ########.fr       */
+/*   Updated: 2025/05/31 08:39:32 by fde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "BitcoinExchange.hpp"
 //==============================================================================
-//COSTRUCTOR/DESTRUCTOR=========================================================
+//COSTRUCTOR/ESTRUCTOR==========================================================
 //==============================================================================
 BitcoinExchange::BitcoinExchange()
 {
-	std::ifstream				file("data.csv");
-	std::vector<std::string>	value;
-	std::string					line;
+	std::ifstream file("data.csv");
+	std::string line;
+	std::string parts[2];
+
 	if (!file.is_open())
-		std::cout << RED "Error: could not open file.";
+		std::cout << RED "Error: could not open file." END << std::endl;
 	else
 	{
 		while (std::getline(file, line))
 		{
-			value = split(line, ',');
-			this->data[convertData(value[0])] = std::atof(value[1].c_str());
+			if (split(line, ',', parts))
+			{
+				int date = convertData(parts[0]);
+				double rate = std::atof(parts[1].c_str());
+				if (date != -1)
+					this->data[date] = rate;
+			}
 		}
 	}
 }
 
-BitcoinExchange::BitcoinExchange(BitcoinExchange const& copy) : data(copy.data) {}
+BitcoinExchange::BitcoinExchange(const BitcoinExchange& copy) : data(copy.data) {}
 
 BitcoinExchange::~BitcoinExchange() {}
 //==============================================================================
 //OPERATOR======================================================================
 //==============================================================================
-BitcoinExchange& BitcoinExchange::operator=(BitcoinExchange const& copy)
+BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& copy)
 {
 	if (this == &copy)
-	return *this;
-	data = copy.data;
+		return *this;
+	this->data = copy.data;
 	return *this;
 }
+
 //==============================================================================
 //METHOD========================================================================
 //==============================================================================
@@ -58,24 +65,26 @@ std::string trim(const std::string& str)
 	return str.substr(start, end - start);
 }
 
-std::vector<std::string> split(const std::string& s, char delimiter)
+bool split(const std::string& s, char delimiter, std::string parts[2])
 {
-	std::vector<std::string> tokens;
-	std::string token;
-	std::istringstream tokenStream(s);
-	while (std::getline(tokenStream, token, delimiter))
-		tokens.push_back(token);
-	return tokens;
+	size_t pos = s.find(delimiter);
+	if (pos == std::string::npos)
+		return false;
+	parts[0] = s.substr(0, pos);
+	parts[1] = s.substr(pos + 1);
+	return true;
 }
 
-std::vector<int> splitInt(const std::string& s, char delimiter)
+bool parseDate(const std::string& str, int& year, int& month, int& day)
 {
-	std::vector<int> tokens;
-	std::string token;
-	std::istringstream tokenStream(s);
-	while (std::getline(tokenStream, token, delimiter))
-		tokens.push_back(atoi(token.c_str()));
-	return tokens;
+	if (str.length() != 10 || str[4] != '-' || str[7] != '-')
+		return false;
+
+	year = std::atoi(str.substr(0, 4).c_str());
+	month = std::atoi(str.substr(5, 2).c_str());
+	day = std::atoi(str.substr(8, 2).c_str());
+
+	return true;
 }
 
 bool isLeapYear(int year)
@@ -85,80 +94,94 @@ bool isLeapYear(int year)
 
 int getDaysInMonth(int year, int month)
 {
-	static const int days[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+	static const int days[] = {31,28,31,30,31,30,31,31,30,31,30,31};
 	if (month == 2 && isLeapYear(year))
 		return 29;
 	return days[month - 1];
 }
 
-int convertData(std::string data)
+int convertData(const std::string& data)
 {
-	std::vector<int>	value;
-	int							ret = 0;
-	value = splitInt(data, '-');
-	if (value[0] < 2009 || value[0] > 2022 || value[1] < 1 || value[1] > 12 || value[2] < 1 || value[2] > getDaysInMonth(value[0], value[1]))
+	int year, month, day;
+	if (!parseDate(data, year, month, day))
 		return -1;
-	ret += value[0] * 365;
-	ret += (value[0] / 4);
-	for(int i = 1; i < value[1]; i++)
-		ret += getDaysInMonth(value[0], i);
-	ret += value[2];
-	return ret;
+
+	if (year < 2009 || year > 2022 || month < 1 || month > 12 || day < 1 || day > getDaysInMonth(year, month))
+		return -1;
+
+	int days = year * 365 + year / 4;
+	for (int i = 1; i < month; ++i)
+		days += getDaysInMonth(year, i);
+	days += day;
+	return days;
 }
 
-bool checkInput(std::string input)
+bool checkInput(const std::string& input)
 {
-	std::string	date;
-	std::string	quantity;
-	size_t		i = 0;
-	date = trim(input.substr(0, input.find('|')));
-	quantity = trim(input.substr(input.find('|') + 1));
-	for(;i < 4; i++)
-		if (!std::isdigit(date[i]))
+	std::string parts[2];
+	if (!split(input, '|', parts))
+		return true;
+
+	std::string date = trim(parts[0]);
+	std::string quantity = trim(parts[1]);
+
+	if (date.length() != 10 || date[4] != '-' || date[7] != '-')
+		return true;
+
+	for (size_t i = 0; i < date.length(); ++i)
+		if (i != 4 && i != 7 && !isdigit(date[i]))
 			return true;
-	if (date[i++] != '-')
-		return true;
-	for(;i < 7; i++)
-		if (!std::isdigit(date[i]))
+
+	bool dotSeen = false;
+	int digits = 0;
+	for (size_t i = 0; i < quantity.length(); ++i)
+	{
+		if (quantity[i] == '.')
+		{
+			if (dotSeen)
+				return true;
+			dotSeen = true;
+		}
+		else if (!isdigit(quantity[i]))
 			return true;
-	if (date[i++] != '-')
-		return true;
-	for(;i < 10; i++)
-		if (!std::isdigit(date[i]))
-			return true;
-	i = 0;
-	if (!std::isdigit(quantity[i]))
-		return true;
-	for(;std::isdigit(quantity[i]); i++)
-		;
-	if (quantity[i++] != '.')
-		return true;
-	if (!std::isdigit(quantity[i]))
-		return true;
-	for(;i < quantity.length(); i++)
-		if (!std::isdigit(quantity[i]))
-			return true;
-	return false;
+		else
+			digits++;
+	}
+	return digits == 0;
 }
 
 double BitcoinExchange::searchValue(std::string input)
 {
-	std::vector<std::string>	value;
-	int							date;
-	double						quantity;
+	std::string parts[2];
 
-	if(checkInput(input))
-		return (std::cout << RED "Error: bad input => " << input << "" END << std::endl, -1);
-	value = split(input, '|');
-	date = convertData(trim(value[0]));
+	if (checkInput(input))
+	{
+		std::cout << RED "Error: bad input => " << input << END << std::endl;
+		return -1;
+	}
+
+	split(input, '|', parts);
+	int date = convertData(trim(parts[0]));
 	if (date == -1)
-		return (std::cout << RED "Error: bad input => " << input << "" END << std::endl, -1);
-	quantity = std::atof(trim(value[1]).c_str());
+	{
+		std::cout << RED "Error: bad input => " << input << END << std::endl;
+		return -1;
+	}
+
+	double quantity = std::atof(trim(parts[1]).c_str());
 	if (quantity < 0)
-		return (std::cout << RED "Error: not a positive number." END << std::endl, -1);
+	{
+		std::cout << RED "Error: not a positive number." END << std::endl;
+		return -1;
+	}
 	else if (quantity > 1000)
-		return (std::cout << RED "Error: too large a number." END << std::endl, -1);
-	for(; this->data.find(date) == this->data.end(); date--)
-		;
-	return (quantity * this->data[date]);
+	{
+		std::cout << RED "Error: too large a number." END << std::endl;
+		return -1;
+	}
+
+	while (this->data.find(date) == this->data.end() && date > 0)
+		date--;
+
+	return quantity * this->data[date];
 }

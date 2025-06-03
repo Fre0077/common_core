@@ -6,7 +6,7 @@
 #    By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/02 14:38:09 by fre007            #+#    #+#              #
-#    Updated: 2025/05/31 08:39:46 by fde-sant         ###   ########.fr        #
+#    Updated: 2025/06/03 18:22:51 by fde-sant         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ HEADERS = PmergeMe.hpp
 SRCS = main.cpp PmergeMe.cpp
 OBJS = $(SRCS:.cpp=.o)
 CXX = c++
-CFLAGS = -std=c++98 -Wall -Werror -Wextra -g
+CFLAGS = -std=c++98 -Wall -Werror -Wextra -O3
 
 all: $(NAME) $(HEADERS)
 
