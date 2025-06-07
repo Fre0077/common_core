@@ -12,7 +12,7 @@ RUN rm -rf /etc/mysql/mariadb.conf.d/50-server.cnf
 COPY ./50-server.cnf /etc/mysql/mariadb.conf.d/50-server.cnf
 
 # Copia lo script di inizializzazione
-COPY setup.sh /setup.sh
+COPY ./tools/setup.sh /setup.sh
 RUN chmod +x /setup.sh
 
 EXPOSE 3306

@@ -1,5 +1,5 @@
 # Variables
-COMPOSE_FILE = docker-compose.yml
+COMPOSE_FILE = ./srcs/docker-compose.yml
 PROJECT_NAME = inception
 
 all: help
@@ -18,7 +18,7 @@ help:
 .PHONY: up
 up:
 	@echo "🚀 Starting Inception services..."
-	docker-compose up --build
+	docker-compose -f $(COMPOSE_FILE) up --build
 	@echo "✅ Services started successfully!"
 	@echo "🌐 Access your site at: https://fde-sant.42.fr"
 

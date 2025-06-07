@@ -33,7 +33,7 @@ RUN wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.ph
 
 RUN mkdir -p /run/php/
 
-COPY setup.sh /
+COPY ./tools/setup.sh /
 RUN chmod 777 /setup.sh
 WORKDIR /var/www/html/
 
