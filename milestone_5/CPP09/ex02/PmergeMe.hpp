@@ -1,33 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   PmergeMe.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/26 10:23:28 by fre007            #+#    #+#             */
-/*   Updated: 2025/06/03 20:09:28 by fde-sant         ###   ########.fr       */
+/*   Created: 2025/05/31 08:36:44 by fde-sant          #+#    #+#             */
+/*   Updated: 2025/06/03 18:10:01 by fde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "RPN.hpp"
+#ifndef PMERGEME_HPP
+# define PMERGEME_HPP
 
-int main(int ac, char **av)
+# include <iostream>
+# include <vector>
+# include <deque>
+# include <string>
+# include <algorithm>
+# include <cmath>
+#include <cstddef>
+
+void	sort(std::vector<int> &sequence);
+
+void	sort(std::deque<int> &sequence);
+
+template <typename T>
+size_t	getSize(const T &sequence, int recursion)
 {
-	if (ac != 2)
-	{
-		std::cerr << "Usage: ./RPN [filename]" << std::endl;
-		return 1;
-	}
-	try
-	{
-		RPN rpn(av[1]);
-		rpn.calculate();
-		std::cout << rpn.getNum() << std::endl; 
-	}
-	catch(const std::exception& e)
-	{
-		std::cerr << e.what() << std::endl;
-	}
-	return 0;
+	return (int)sequence.size() / pow(2, recursion);
 }
+
+#endif

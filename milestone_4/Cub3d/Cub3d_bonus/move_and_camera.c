@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move_and_camera.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alborghi <alborghi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fde-sant <fde-sant@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 16:42:48 by alborghi          #+#    #+#             */
-/*   Updated: 2025/04/14 17:31:36 by alborghi         ###   ########.fr       */
+/*   Updated: 2025/06/05 11:14:25 by fde-sant         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,14 @@ void	move_update(t_data *data, double angle)
 
 void	check_move(t_viktor prev, t_data *data)
 {
+	if (hit(data, (t_viktor){data->player.x, data->player.y, 0})
+		&& !hit(data, (t_viktor){data->player.x, prev.y, 0})
+		&& !hit(data, (t_viktor){prev.x, data->player.y, 0}))
+	{
+		data->player.x = prev.x;
+		data->player.y = prev.y;
+		return ;
+	}
 	if (hit(data, (t_viktor){data->player.x, prev.y, 0}))
 		data->player.x = prev.x;
 	if (hit(data, (t_viktor){prev.x, data->player.y, 0}))

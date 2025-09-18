@@ -51,6 +51,10 @@
 		"sstream": "cpp",
 		"stdexcept": "cpp",
 		"streambuf": "cpp",
-		"typeinfo": "cpp"
+		"typeinfo": "cpp",
+		"numbers": "cpp",
+		"span": "cpp",
+		"cinttypes": "cpp",
+		"*.tpp": "cpp"
 	}
 }
